@@ -1,0 +1,14 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  background-color: #242424;
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.Card{
+    @apply w-72 h-auto shadow-lg rounded-lg flex-none transition-all hover:-translate-y-4 hover:shadow-xl
+}
+h1{
+  color: white;
+}
