@@ -16,7 +16,7 @@ Una lista de tecnologías utilizadas dentro del proyecto:
 * [Mongoose]: Versión ^7.2.2
 ## Instalación
 ***
-Lo primero que deberemos hacer sera clonar el repositorio y luego seguir los siguientes pasos para ejecutar el proyecto.
+Lo primero que deberemos hacer sera clonar el repositorio y luego seguir los siguientes pasos para ejecutar el proyecto:
 
 ### El Api
 ***
