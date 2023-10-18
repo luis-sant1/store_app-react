@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 export function Error(error) {
   
     
-    const toArr = Object.values(error) // Convertimos error en un arr, ya que React no deja renderizar objetos.
+    const toArr = Object.values(error)
    
     return (
         <>
