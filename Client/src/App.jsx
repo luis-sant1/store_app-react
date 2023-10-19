@@ -9,6 +9,40 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 
 function App() {
+
+  const[registros, setRegistro] = useState([]);
+  const[tablaRegistros, setTablaregistros] = useState([]);
+  const[busqueda, setBusqueda] = useState("");
+
+  const peticiones = async()=>{
+    await axios.get("mongodb+srv://santiagomuchacholuma:M8X9XqX80bGHCjuB@cluster0.rrktmix.mongodb.net/"/*Colocar url de la base de datos*/).then(response=>{
+      console.log(response.data);
+      setTablaregistros(response.data);
+    }).catch(error=>{
+      console.log(error);
+    })
+  }
+
+  const handleChange = e =>{
+    setBusqueda(e.target.value);
+    filtrar(e.target.value);
+  }
+
+ const filtrado = (ParamBusqueda) =>{
+    var ResultadosBusqueda = tablaRegistros.filter((elemento)=>{
+      if(elemento.nombre.toString().toLowerCase().includes(ParamBusqueda.toLowerCase())
+      || elemento.nombre.toString().toLowerCase().includes(ParamBusqueda.toLowerCase())
+    ){
+      return elemento;
+    }
+    })
+    setRegistro(ResultadosBusqueda);
+  }
+
+  useEffect(()=>{
+    peticiones();
+  },[])
+
   const [page,setPage]=useState('home')
   const [id,setID]=useState('')
   const getContent=()=>{
