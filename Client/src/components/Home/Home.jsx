@@ -12,6 +12,7 @@ import { Pagination } from "../extraComponents/Pagination";
 export default function Home(props) {
 
     const funUp = props
+    
     //ESTADOS
     const [isOpenAlert, openAlert, closeAlert] = useModal(false); // Estado de la venta ver deetalles
     const [dataDetail, setDataDetail] = useState({}) // Data de la ventana datails.
@@ -21,22 +22,21 @@ export default function Home(props) {
     const [numberProducts, setNumberProducts] = useState('') // Número de productos
 
 
-    const { data, loading, error } = useFetch(`https://api.escuelajs.co/api/v1/products?offset=0&limit=9`); // uso del custom hook useFetch para traer la data.
-    const totalProducts = async (data) =>{ //Función asincrona que espera para calcular el total de productos.
-        await data // Espera por data (Que es un array)
-        const totalProducts = data.length // calcul el length
-        return totalProducts // retorna
-    }
-   
-    totalProducts(data).then((value)  => setNumberProducts(value) ).catch((error) => (error)) //seteamos el valro al estado (promesaa)
+    const { data, loading, error } = useFetch(`http://localhost:3000/products`); // uso del custom hook useFetch para traer la data.
     
-     
-    const openDetail = (e, data) => { // Ventana d ever detalles
+    const openDetail = (e, data) => { // Ventana de ever detalles
         setDataDetail(data)
         openAlert()
     }
     
-
+    // GENERA CONFLICTO CON EL BOTÓN DE VER DETALLES
+    // const totalProducts = async (data) =>{ //Función asincrona que espera para calcular el total de productos.
+    //     await data // Espera por data (Que es un array)
+    //     const totalProducts = data.length // calcul el length
+    //     return totalProducts // retorna
+    // }
+   
+    // totalProducts(data).then((value)  => setNumberProducts(value) ).catch((error) => (error)) //seteamos el valro al estado (promesaa)
 
 
     return (
@@ -52,7 +52,7 @@ export default function Home(props) {
                     {error && <Error error={error} />} {/*Para mostrar el error.*/}
                     {loading && <Loading />} {/* Estado de la carga del req. */}
                     {data?.map((e) => ( // Pasamos por cada uno de los productos, colocamos una key y traemos la data. 
-                        <CardPokemons key={data.id} data={e} openDetail={openDetail} />
+                        <CardPokemons  data={e} openDetail={openDetail} />
                     ))}
                     <Pagination productsPerPage = {productsPerPage} currentPage = {currentPage} setCurrentPage = {setCurrentPage} numberProducts={numberProducts} />
                 </div>

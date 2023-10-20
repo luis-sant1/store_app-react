@@ -3,16 +3,15 @@ import axios from "axios";
 import { useModal } from "../Modal/useModal"
 import Modal from "../Modal/Modal";
 export default function CardDetail(props){
-    // console.log(props)
+    console.log(props)
     const [isOpenAlert, openAlert, closeAlert] = useModal(false);
     const funUpDate=props.funUp.toPageUp
-    // console.log(funUpDate)
+    console.log(funUpDate)
 
     const handleDelete=async()=>{
         try {
-          const {data:res}=await axios.post(`http://localhost:3000/delete-pokemons/${props.dataDetail._id}`)
+          const {data:res}=await axios.post(`http://localhost:3000/deleteProduct/${props.dataDetail._id}`)
           console.log(res)
-          window.location.reload()
           openAlert()
         } catch (error) {
           console.log(error)
@@ -21,7 +20,7 @@ export default function CardDetail(props){
     return(
         <div className="h-98" >
                 <Modal isOpen={isOpenAlert} onClose={closeAlert}>
-                    <h2>POKEMON ELIMINADO CORRECTAMENTE</h2>
+                    <h2>POCION ELIMINADA CORRECTAMENTE</h2>
                 </Modal>    
             {props.dataDetail.imagen?
             <div className="inf">
@@ -32,16 +31,16 @@ export default function CardDetail(props){
                     <div className='p-4'>
                         <span className="flex text-lg font-semibold text-center">{props.dataDetail.nombre}</span>
                     </div>
-                    <div className="des pb-3">
+                    <div className="des">
                         <span>Descripcion: {props.dataDetail.descripcion}</span>
                     </div>
                     <div className='w-full h-full grid grid-cols-3 gap-42 items-center justify-center rounded-b-lg'>
-                            <span className="sm:mr-2">Habilidad: {props.dataDetail.habilidad}</span>
-                            <span className="ml-auto mr-auto">Generación: {props.dataDetail.generacion}</span>
-                            <span className="sm:ml-5 pl-5">Categoria: {props.dataDetail.categoria[0]}</span>
+                            <span>Precio:{props.dataDetail.precio}</span>
+                            <span>Disponible:{props.dataDetail.unidades}</span>
+                            <span>Categoria:{props.dataDetail.categoria[0]}</span>
                     </div>
                     <div className='grid grid-cols-2 m-4 gap-20'>
-                        <button className='w-full rounded-lg shadow-lg bg-red-400 m-2 p-1 text-sm font-medium' onClick={(e)=>handleDelete()} >Eliminar</button>
+                        <button className='w-full rounded-lg shadow-lg bg-red-400 m-2 p-1 text-sm font-medium' onClick={(e)=>handleDelete()}>Eliminar</button>
                         <button className='w-full rounded-lg shadow-lg bg-green-400 m-2 p-1 text-sm font-medium' onClick={funUpDate("update",props.dataDetail._id)}>Actualizar</button>
                     </div>
                 </div>

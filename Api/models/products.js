@@ -17,18 +17,20 @@ const prSchema = new Schema({
       default: null
    },
    precio: {
-      type: Number,
+      type: String,
       required: true
    },
    unidades: {
       type: String,
       required: true
    },
+   // generacion = precio, habilidad = unidades
    categoria: {
       type: Array,
       default: [],
       required: true
    },
 }); 
+
 
 module.exports = mongoose.model('Products', prSchema);

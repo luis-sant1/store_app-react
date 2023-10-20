@@ -11,9 +11,9 @@ export default function CreatePokemon(){
         imagen:null,
 		nombre: "",
 		descripcion: "",
-        generacion:"",
+        precio:"",
         categoria:[],
-        habilidad:""
+        unidades:""
 	});
 
     const handleChange = ({ currentTarget: input }) => {
@@ -36,7 +36,7 @@ export default function CreatePokemon(){
         if (data.imagen===null) {
             e.preventDefault()
             setError("Por favor ingresa la imagen del Pokemon")
-        } else if (data.nombre,data.descripcion,data.generacion,data.habilidad==="") {
+        } else if (data.nombre,data.descripcion,data.precio,data.unidades==="") {
             e.preventDefault()
             setError("Hay campos vacios, todos tienen que llenarse para crear un Pokemon")
         }else if (data.categoria.length===0) {
@@ -49,13 +49,13 @@ export default function CreatePokemon(){
         data.imagen = data.imagen !== null && (body.append('imagen', data.imagen))
         data.nombre = data.nombre !== '' && (body.append('nombre', data.nombre))
         data.descripcion = data.descripcion !== '' && (body.append('descripcion', data.descripcion))
-        data.generacion = data.generacion !== '' && (body.append('generacion', data.generacion))
+        data.precio = data.precio !== '' && (body.append('precio', data.precio))
         data.categoria = data.categoria.length !== 0 && (body.append('categoria', data.categoria))
-        data.habilidad = data.habilidad !== '' && (body.append('habilidad', data.habilidad))
+        data.unidades = data.unidades !== '' && (body.append('unidades', data.unidades))
 
 		try {
             console.log(body)
-			const url = "http://localhost:3000/create-pokemons"
+			const url = "http://localhost:3000/createProduct"
 			const { data: res } = await axios.post(url, body);
             console.log(res)
             openAlert()
@@ -129,19 +129,19 @@ export default function CreatePokemon(){
             </div>
             <input
                 type="text"
-                placeholder="Generación"
-                name="generacion"
+                placeholder="precio"
+                name="precio"
                 onChange={handleChange}
-                value={data.generacion}
+                value={data.precio}
                 
                 className="h-10 ml-2 m-2 bg-slate-100 rounded-lg ..."
             />
             <input
                 type="text"
-                placeholder="Habilidad"
-                name="habilidad"
+                placeholder="unidades"
+                name="unidades"
                 onChange={handleChange}
-                value={data.habilidad}
+                value={data.unidades}
                 className="h-10 ml-2 m-2 bg-slate-100 rounded-lg ..."
             />
             {error && <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center text-center'>{error}</div>}

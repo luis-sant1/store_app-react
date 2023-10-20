@@ -16,30 +16,54 @@ const getAll =async(req,res)=>{
 
 // Create a item
 
-const postItem = async (req, res) => {
-    try {
-       if (!req.file) return res.status(404).json({messageError: 'Debes agregar una imagen de la pocion'})
-       const { path } = req.file;
+// const postItem = async (req, res) => {
+//     try {
+//        if (!req.file) return res.status(404).json({messageError: 'Debes agregar una imagen del item'})
+//        const { path } = req.file;
  
-       const { nombre, descripcion, imagen, generacion, habilidad, categoria } = req.body;
-       let item = await prSchema.findOne({ nombre });
-       console.log(item);
-       if (item) return res.status(404).json({messageError: 'Ya existe esta pocion'});
+//        const { nombre, descripcion, imagen, precio, unidades, categoria } = req.body;
+//        let item = await prSchema.findOne({ nombre });
+//        console.log(item);
+//        if (item) return res.status(404).json({messageError: 'Ya existe este item'});
  
-       item = new prSchema({ nombre, descripcion, imagen, generacion, habilidad, categoria });
-       console.log(item);
-       if (path) {
-          const result = await uploadImageEvent(path)
-          await fs.unlink(path)
-          putItem.imagen = {public_id: result.public_id, secure_url: result.secure_url}
-       }
-       await item.save()
-       return res.status(200).json({item: item._id});
-    } catch (error) {
-       return res.status(500).json({messageError: error.message});
-    }
- }
- 
+//        item = new prSchema({ nombre, descripcion, imagen, precio, unidades, categoria });
+//        console.log(item);
+//        if (path) {
+//           const result = await uploadImageEvent(path)
+//           await fs.unlink(path)
+//           putItem.imagen = {public_id: result.public_id, secure_url: result.secure_url}
+//        }
+//        await item.save()
+//        return res.status(200).json({item: item._id});
+//     } catch (error) {
+//        return res.status(500).json({messageError: error.message});
+//     }
+//  }
+ const postItem = async (req, res) => {
+   try {
+     console.log(req)
+      if (!req.file) return res.status(404).json({messageError: 'Debes agregar una imagen del item'})
+      const { path } = req.file;
+
+      const { nombre, descripcion, imagen, precio, unidades, categoria } = req.body;
+      let item = await prSchema.findOne({ nombre });
+      console.log(item);
+      if (item) return res.status(404).json({messageError: 'Ya existe este item'});
+
+      item = new prSchema({ nombre, descripcion, imagen, precio, unidades, categoria });
+      console.log(item);
+      if (path) {
+         const result = await uploadImageEvent(path)
+         await fs.unlink(path)
+         item.imagen = {public_id: result.public_id, secure_url: result.secure_url}
+      }
+      await item.save()
+      return res.status(200).json({item: item._id});
+   } catch (error) {
+      // console.log(error.message);
+      return res.status(500).json({messageError: error.message});
+   }
+}
 // Update Item
 
 const putItem = async (req, res) => {

@@ -6,14 +6,14 @@ import Modal from "../Modal/Modal";
 
 export default function UpdatePokemon(props){
     console.log(props)
-    const id=props.id 
+    const id=props
     const [isOpenAlert, openAlert, closeAlert] = useModal(false);
     const [error,setError]=useState('')
     const [data, setData] = useState({
         imagen:null,
 		nombre: "",
 		descripcion: "",
-        cantidad:"",
+        unidades:"",
         categoria:[],
         precio:""
 	});
@@ -38,7 +38,7 @@ export default function UpdatePokemon(props){
         if (data.imagen===null) {
             e.preventDefault()
             setError("Por favor ingresa la imagen del Pokemon")
-        } else if (data.nombre,data.descripcion,data.cantidad,data.precio==="") {
+        } else if (data.nombre,data.descripcion,data.unidades,data.precio==="") {
             e.preventDefault()
             setError("Hay campos vacios, todos tienen que llenarse para crear un Pokemon")
         }else if (data.categoria.length===0) {
@@ -51,13 +51,13 @@ export default function UpdatePokemon(props){
         data.imagen = data.imagen !== null && (body.append('imagen', data.imagen))
         data.nombre = data.nombre !== '' && (body.append('nombre', data.nombre))
         data.descripcion = data.descripcion !== '' && (body.append('descripcion', data.descripcion))
-        data.cantidad = data.cantidad !== '' && (body.append('cantidad', data.cantidad))
+        data.unidades = data.unidades !== '' && (body.append('unidades', data.unidades))
         data.categoria = data.categoria.length !== 0 && (body.append('categoria', data.categoria))
         data.precio = data.precio !== '' && (body.append('precio', data.precio))
 
 		try {
             console.log(body)
-			const url = `http://localhost:3000/update-pokemons/${id}`
+			const url = `http://localhost:3000/updateProduct/${id}`
 			const { data: res } = await axios.post(url, body);
             console.log(res)
             openAlert("Pokemon actualizado")
@@ -131,15 +131,15 @@ export default function UpdatePokemon(props){
             <input
                 type="text"
                 placeholder="Generación"
-                name="cantidad"
+                name="unidades"
                 onChange={handleChange}
-                value={data.cantidad}
+                value={data.unidades}
                 
                 className="h-10 ml-2 m-2 bg-slate-100 rounded-lg ..."
             />
             <input
                 type="text"
-                placeholder="Habilidad"
+                placeholder="Precio"
                 name="precio"
                 onChange={handleChange}
                 value={data.precio}
