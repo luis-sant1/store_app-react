@@ -7,16 +7,16 @@ import axios from "axios";
 export default function CreatePokemon(){
     const [error,setError]=useState('')
     const [isOpenAlert, openAlert, closeAlert] = useModal(false);
-    const [data, setData] = useState({
+    const [data, setData] = useState({ //ESTADO POR DEFECTO DE LA DATA
         imagen:null,
 		nombre: "",
 		descripcion: "",
-        generacion:"",
-        categoria:[],
-        habilidad:""
+        precio:"",
+        categoria:"",
+        unidades:""
 	});
 
-    const handleChange = ({ currentTarget: input }) => {
+    const handleChange = ({ currentTarget: input }) => { // Entrada de datos en los inputs
 		setData({ ...data, [input.name]: input.value });
 		console.log(data)
 	};
@@ -24,40 +24,39 @@ export default function CreatePokemon(){
         setData({
             ...data,
             categoria: e.target.value
-        })
+        }) // Entrada de datos de los inputs (setea la categoria según option)
     }
     const handleImg = ({ currentTarget: input }) => {
-		setData({ ...data, [input.name]: input.files[0] });
-		// console.log(data)
+		setData({ ...data, [input.name]: input.files[0] }); // Manejador de imagen.
 	};
 
 
     const handleSubmit = async (e) => {
         if (data.imagen===null) {
             e.preventDefault()
-            setError("Por favor ingresa la imagen del Pokemon")
-        } else if (data.nombre,data.descripcion,data.generacion,data.habilidad==="") {
+            setError("Por favor ingresa la imagen del Producto")
+        } else if (data.nombre,data.descripcion,data.precio,data.unidades==="") {
             e.preventDefault()
-            setError("Hay campos vacios, todos tienen que llenarse para crear un Pokemon")
+            setError("Hay campos vacios, todos tienen que llenarse para crear un Producto")
         }else if (data.categoria.length===0) {
             e.preventDefault()
-            setError("Por favor agrega las categoria de tu Pokemon")
+            setError("Por favor agrega las categoria de tu Producto")
         }else{
             e.preventDefault();
-        console.log(data);
+        // console.log(data);
         let body = new FormData()
         data.imagen = data.imagen !== null && (body.append('imagen', data.imagen))
         data.nombre = data.nombre !== '' && (body.append('nombre', data.nombre))
         data.descripcion = data.descripcion !== '' && (body.append('descripcion', data.descripcion))
-        data.generacion = data.generacion !== '' && (body.append('generacion', data.generacion))
+        data.precio = data.precio !== '' && (body.append('precio', data.precio))
         data.categoria = data.categoria.length !== 0 && (body.append('categoria', data.categoria))
-        data.habilidad = data.habilidad !== '' && (body.append('habilidad', data.habilidad))
+        data.unidades = data.unidades !== '' && (body.append('unidades', data.unidades))
 
 		try {
             console.log(body)
-			const url = "http://localhost:3000/create-pokemons"
-			const { data: res } = await axios.post(url, body);
-            console.log(res)
+			const url = "http://localhost:3000/createProduct"
+			const { data: res } = await axios.post(url, body); // HACEMOS POST DE DATA
+            // console.log(res)
             openAlert()
 		} catch (error) {
 			if (
@@ -74,23 +73,25 @@ export default function CreatePokemon(){
     return(
         <div className="flex justify-center m-10 w-98 ...">
                 <Modal isOpen={isOpenAlert} onClose={closeAlert}>
-                    <h2>POKEMON CREADO CORRECTAMENTE</h2>
+                    <h2>PRODUCTO CREADO CORRECTAMENTE</h2>
                 </Modal>
-        <form className="flex flex-col min-w-[70%] bg-slate-200 p-2 bg-white rounded-lg ..." onSubmit={handleSubmit}>
+        <form className="flex flex-col min-w-[70%]  p-2 bg-white rounded-lg ..." onSubmit={handleSubmit}>
             <div className="flex justify-center m-2 ...">
-                <h1 className="text-xl font-semibold ...">CREA TU POKEMON</h1>
+                <h1 className="text-xl font-semibold text-black ...">CREA TU PRODUCTO</h1>
             </div>
-            <div className="items-center justify-center">
-                <input 
-                type="file" 
-                name="imagen"
-                onChange={handleImg}
-                className="m-4"
-                />
+            <div className=" sm:w-96 cursor-pointer">
+                <div className="items-center justify-center cursor-pointer">
+                    <input 
+                    type="file" 
+                    name="imagen"
+                    onChange={handleImg}
+                    className="mt-4 mb-4 cursor-pointer w-62"
+                    />
+                </div>
             </div>
             <input
                 type="text"
-                placeholder="Nombre del Pokemon"
+                placeholder="Nombre del Producto"
                 name="nombre"
                 onChange={handleChange}
                 value={data.nombre}
@@ -107,45 +108,37 @@ export default function CreatePokemon(){
             <div className="ml-2 flex flex-basic">
                 <label className="m-2"> Categoria:</label>
                 <br />
-                <select onChange={(e)=>handleSelect(e)} name="categoria" value={data.categoria} >   
-                    <option value="Bicho">Bicho</option>
-                    <option value="Dragón">Dragón</option>
-                    <option value="Eléctrico">Eléctrico</option>
-                    <option value="Hada">Hada</option>
-                    <option value="Lucha">Lucha</option>
-                    <option value="Fuego">Fuego</option>
-                    <option value="Volador">Volador</option>
-                    <option value="Fantasma">Fantasma</option>
-                    <option value="Planta">Planta</option>
-                    <option value="Tierra">Tierra</option>
-                    <option value="Hielo">Hielo</option>
-                    <option value="Normal">Normal</option>
-                    <option value="Veneno">Veneno</option>
-                    <option value="Psíquico">Psíquico</option>
-                    <option value="Roca">Roca</option>
-                    <option value="Acero">Acero</option>
-                    <option value="Agua">Agua</option>
+                <select onChange={(e)=>handleSelect(e)} name="categoria" className="cursor-pointer" value={data.categoria} >   
+                    <option value="Ropa">Ropa</option>
+                    <option value="Tegnologia">Tecnologia</option>
+                    <option value="Accesorios">Accesorios</option>
+                    <option value="Suplementos">Suplementos</option>
+                    <option value="Herramientas">Herramientas</option>
+                    <option value="Articulos_del_hogar">Articulos del hogar</option>
+                    <option value="Libros">Libros</option>
+                    <option value="Articulos_de_belleza">Articulos de belleza</option>
+                    <option value="Arte">Arte</option>
                 </select>
             </div>
             <input
                 type="text"
-                placeholder="Generación"
-                name="generacion"
+                placeholder="Precio"
+                name="precio"
                 onChange={handleChange}
-                value={data.generacion}
+                value={data.precio}
                 
-                className="h-10 ml-2 m-2 bg-slate-100 rounded-lg ..."
+                className="h-10 mb-4 bg-slate-100 rounded-lg ..."
             />
             <input
                 type="text"
-                placeholder="Habilidad"
-                name="habilidad"
+                placeholder="Unidades"
+                name="unidades"
                 onChange={handleChange}
-                value={data.habilidad}
-                className="h-10 ml-2 m-2 bg-slate-100 rounded-lg ..."
+                value={data.unidades}
+                className="h-10 mb-4 bg-slate-100 rounded-lg ..."
             />
-            {error && <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center text-center'>{error}</div>}
-            <button type="submit" className="m-4 bg-yellow-300 h-10 rounded-full text-white font-semibold text-white-500 ...">
+            {error && <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center'>{error}</div>}
+            <button type="submit" className="m-4 bg-green-50 h-10 rounded-full text-white font-semibold text-white-500 ...">
                 Crear
             </button>
         </form>

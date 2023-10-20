@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = require('mongoose');
 
-const pokemonsSchema = new Schema({
+const prSchema = new Schema({
    nombre: {
       type: String,
       required: true
@@ -16,20 +16,21 @@ const pokemonsSchema = new Schema({
       secure_url: String,
       default: null
    },
-   generacion: {
+   precio: {
       type: String,
       required: true
    },
-   habilidad: {
+   unidades: {
       type: String,
       required: true
    },
+   // generacion = precio, habilidad = unidades
    categoria: {
       type: Array,
       default: [],
       required: true
    },
-});
+}); 
 
-const Pokemons = mongoose.model('Pokemons', pokemonsSchema);
-module.exports = Pokemons
+
+module.exports = mongoose.model('Products', prSchema);
