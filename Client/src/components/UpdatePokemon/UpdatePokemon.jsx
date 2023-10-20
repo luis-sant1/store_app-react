@@ -57,8 +57,7 @@ export default function UpdatePokemon(props){
 
 		try {
             console.log(body)
-			const url = `http://localhost:3000/updateProduct/${id}`
-			const { data: res } = await axios.post(url, body);
+			const { data: res } = await axios.put(`http://localhost:3000/updateProduct/${id.id}`, body); // Buscamos en la data de la respuesta con el id que viene de props (APP.JSX) y editamos.
             console.log(res)
             openAlert("Pokemon actualizado")
 		} catch (error) {
