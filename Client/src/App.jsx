@@ -5,9 +5,6 @@ import CreatePokemon from './components/CreatePokemon/CreatePokemon'
 import UpdatePokemon from './components/UpdatePokemon/UpdatePokemon'
 import CardPokemons from './components/CardPokemons/CardPokemons'
 import logo from './images/pokemon.png'
-import axios from 'axios'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
 
@@ -46,6 +43,8 @@ function App() {
   },[])
 
 
+
+
   const [page,setPage]=useState('home') // Estado para la página actual. 
   const [id,setID]=useState('')
   const [content, setContent] = useState("")
@@ -73,12 +72,10 @@ function App() {
 
   return (
     <div>
-      <header className="grid grid-cols-5 bg-white h-14">
+      <header className="grid grid-cols-3 bg-white h-14">
         <img src={logo} alt="img_not_fund" className='ml-4 w-28 h-auto' />
         <button onClick={toPage("home")} className='rounded-lg shadow-lg bg-yellow-200 m-2  p-1 text-sm font-medium'>Inicio</button>
         <button onClick={toPage("create")} className='rounded-lg shadow-lg bg-green-50 m-2 p-1 text-sm font-medium'>Crear</button>
-        <input class="w-64 h-10 pl-2 pr-8 rounded-l-full focus:outline-none m-2 p-1" type="text" onChange={handleChange} placeholder="Buscar..." />
-        <button className="btn btn-success"><FontAwesomeIcon icon={faSearch}/></button>
       </header>
       
       {getContent()}
