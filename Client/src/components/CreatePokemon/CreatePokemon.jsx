@@ -76,7 +76,7 @@ export default function CreatePokemon(){
                 <Modal isOpen={isOpenAlert} onClose={closeAlert}>
                     <h2>POKEMON CREADO CORRECTAMENTE</h2>
                 </Modal>
-        <form className="flex flex-col min-w-[70%] bg-slate-200 p-2 bg-white rounded-lg ..." onSubmit={handleSubmit}>
+        <form className="flex flex-col min-w-[70%]  p-2 bg-white rounded-lg ..." onSubmit={handleSubmit}>
             <div className="flex justify-center m-2 ...">
                 <h1 className="text-xl font-semibold text-black ...">CREA TU PRODUCTO</h1>
             </div>
@@ -92,7 +92,7 @@ export default function CreatePokemon(){
             </div>
             <input
                 type="text"
-                placeholder="Nombre del Pokemon"
+                placeholder="Nombre del Producto"
                 name="nombre"
                 onChange={handleChange}
                 value={data.nombre}
@@ -123,7 +123,7 @@ export default function CreatePokemon(){
             </div>
             <input
                 type="text"
-                placeholder="precio"
+                placeholder="Precio"
                 name="precio"
                 onChange={handleChange}
                 value={data.precio}
@@ -132,13 +132,13 @@ export default function CreatePokemon(){
             />
             <input
                 type="text"
-                placeholder="unidades"
+                placeholder="Unidades"
                 name="unidades"
                 onChange={handleChange}
                 value={data.unidades}
                 className="h-10 mb-4 bg-slate-100 rounded-lg ..."
             />
-            {error && <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center text-center'>{error}</div>}
+            {error && <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center'>{error}</div>}
             <button type="submit" className="m-4 bg-green-50 h-10 rounded-full text-white font-semibold text-white-500 ...">
                 Crear
             </button>
