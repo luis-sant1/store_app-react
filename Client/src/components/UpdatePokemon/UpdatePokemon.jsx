@@ -4,20 +4,20 @@ import axios from "axios";
 import { useModal } from "../Modal/useModal"
 import Modal from "../Modal/Modal";
 
-export default function UpdatePokemon(props){
-    console.log(props)
-    const id=props
+export default function UpdatePokemon(idU, content){
+    
+    const id= idU.idU
+    console.log(id)
     const [isOpenAlert, openAlert, closeAlert] = useModal(false);
     const [error,setError]=useState('')
     const [data, setData] = useState({
         imagen:null,
-		nombre: "",
-		descripcion: "",
-        unidades:"",
+		nombre: idU.content.nombre.toString(),
+		descripcion: idU.content.descripcion.toString(),
+        unidades:idU.content.unidades.toString(),
         categoria:[],
-        precio:""
+        precio: idU.content.precio.toString()
 	});
-
     const handleChange = ({ currentTarget: input }) => {
 		setData({ ...data, [input.name]: input.value });
 		console.log(data)
@@ -57,7 +57,7 @@ export default function UpdatePokemon(props){
 
 		try {
             console.log(body)
-			const { data: res } = await axios.put(`http://localhost:3000/updateProduct/${id.id}`, body); // Buscamos en la data de la respuesta con el id que viene de props (APP.JSX) y editamos.
+			const { data: res } = await axios.put(`http://localhost:3000/updateProduct/${id}`, body); // Buscamos en la data de la respuesta con el id que viene de props (APP.JSX) y editamos.
             console.log(res)
             openAlert("Pokemon actualizado")
 		} catch (error) {

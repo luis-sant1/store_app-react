@@ -7,13 +7,14 @@ import logo from './images/pokemon.png'
 function App() {
   const [page,setPage]=useState('home')
   const [id,setID]=useState('')
+  const [content, setContent] = useState("")
   const getContent=()=>{
     if (page==='home') {
       return <Home toPageUp={toPageUp}/>
     }else if(page==='create'){
       return <CreatePokemon/>
     }else if(page==='update'){
-      return <UpdatePokemon id={id}/>
+      return <UpdatePokemon idU={id} content={content}/>
     }
   }
   const toPage = page=>e=>{
@@ -21,13 +22,15 @@ function App() {
     window.history.pushState(null,"Create",`/${page}`)
     setPage(page)
   }
-  const toPageUp=(page,id)=>e=>{
+  const toPageUp=(page, id, data)=>e=>{
     e.preventDefault()
     console.log(id)
     window.history.pushState(null,"Create",`/${page}/${id}`)
     setPage(page)
     setID(id)
+    setContent(data)
   }
+
   return (
     <div>
       <header className="grid grid-cols-3 bg-white h-14">

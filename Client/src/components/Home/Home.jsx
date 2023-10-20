@@ -9,7 +9,7 @@ import { Loading } from "../extraComponents/Loading";
 import { Error } from "../extraComponents/Error";
 import { Pagination } from "../extraComponents/Pagination";
 
-export default function Home(props) {
+export default function Home(props) { 
 
     const funUp = props
     
@@ -42,7 +42,7 @@ export default function Home(props) {
     return (
         <div className="Po">
             <Modal isOpen={isOpenAlert} onClose={closeAlert}>
-                <CardDetail dataDetail={dataDetail} funUp={funUp} />
+                <CardDetail dataDetail={dataDetail} funUp={funUp}  />
             </Modal>
             <div className="items-center justify-center text-center mt-4 text-white">
                 <span className="text-3xl font-bold pt-4 text-white"><h1>POKEMONES</h1></span>
@@ -52,9 +52,9 @@ export default function Home(props) {
                     {error && <Error error={error} />} {/*Para mostrar el error.*/}
                     {loading && <Loading />} {/* Estado de la carga del req. */}
                     {data?.map((e) => ( // Pasamos por cada uno de los productos, colocamos una key y traemos la data. 
-                        <CardPokemons  data={e} openDetail={openDetail} />
+                        <CardPokemons key = {e._id}  data = {e} openDetail = {openDetail} /> // Arreglado errox "Every child has to be a unique key."
                     ))}
-                    <Pagination productsPerPage = {productsPerPage} currentPage = {currentPage} setCurrentPage = {setCurrentPage} numberProducts={numberProducts} />
+                    {/* <Pagination productsPerPage = {productsPerPage} currentPage = {currentPage} setCurrentPage = {setCurrentPage} numberProducts={numberProducts} /> */}
                 </div>
             </div>
         </div>
