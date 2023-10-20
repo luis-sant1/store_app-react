@@ -33,9 +33,9 @@ export default function CardDetail(props){
                         <span>Descripcion: {props.dataDetail.descripcion}</span>
                     </div>
                     <div className='details w-full grid grid-cols-3  items-center justify-center text-center'>
-                            <span className="sm:mr-2">Precio:{props.dataDetail.precio}$</span>
+                            <span className="sm:mr-2">Precio: {props.dataDetail.precio}$</span>
                             <span className="ml-auto mr-auto">Disponible:{props.dataDetail.unidades}</span>
-                            <span className="sm:ml-5 pl-5">Categoria:{props.dataDetail.categoria[0].split('_').join(" ")}</span> {/* ARREGLADO MAL RENDERIZADO DE LAS CATEGORIAS CON ESPACIO*/}
+                            <span className="sm:ml-5 pl-5">Categoria: {props.dataDetail.categoria[0].split('_').join(" ")}</span> {/* ARREGLADO MAL RENDERIZADO DE LAS CATEGORIAS CON ESPACIO*/}
                     </div>
                     <div className='grid grid-cols-2 m-4 gap-20'>
                         <button className='w-full rounded-lg shadow-lg bg-red-200 m-2 p-1 text-sm font-medium' onClick={(e)=>handleDelete()}>Eliminar</button>
