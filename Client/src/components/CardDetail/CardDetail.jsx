@@ -3,14 +3,12 @@ import axios from "axios";
 import { useModal } from "../Modal/useModal"
 import Modal from "../Modal/Modal";
 export default function CardDetail(props){
-    console.log(props)
     const [isOpenAlert, openAlert, closeAlert] = useModal(false);
-    const funUpDate=props.funUp.toPageUp
-    console.log(funUpDate)
+    const funUpDate=props.funUp.toPageUp // Función que retorna setea los datos, id y la página (update para el caso.)
 
     const handleDelete=async()=>{
         try {
-          const {data:res}=await axios.delete(`http://localhost:3000/deleteProduct/${props.dataDetail._id}`)
+          const {data:res}=await axios.delete(`http://localhost:3000/deleteProduct/${props.dataDetail._id}`) // Hacemos delete obtenindo el id de las props.
           console.log(res)
           openAlert()
         } catch (error) {
@@ -20,7 +18,7 @@ export default function CardDetail(props){
     return(
         <div className="h-98" >
                 <Modal isOpen={isOpenAlert} onClose={closeAlert}>
-                    <h2>POCION ELIMINADA CORRECTAMENTE</h2>
+                    <h2>PRODUCTO ELIMINADO CORRECTAMENTE</h2>
                 </Modal>    
             {props.dataDetail.imagen?
             <div className="inf">

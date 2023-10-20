@@ -11,7 +11,7 @@ import { Pagination } from "../extraComponents/Pagination";
 
 export default function Home(props) { 
 
-    const funUp = props
+    const funUp = props // TRAE FUNCiÓN
     
     //ESTADOS
     const [isOpenAlert, openAlert, closeAlert] = useModal(false); // Estado de la venta ver deetalles
@@ -24,8 +24,8 @@ export default function Home(props) {
 
     const { data, loading, error } = useFetch(`http://localhost:3000/products`); // uso del custom hook useFetch para traer la data.
     
-    const openDetail = (e, data) => { // Ventana de ever detalles
-        setDataDetail(data)
+    const openDetail = (e, data) => { // Ventana de ver detalles
+        setDataDetail(data) // Setear la data a la ventana.
         openAlert()
     }
     
@@ -41,8 +41,8 @@ export default function Home(props) {
 
     return (
         <div className="Po">
-            <Modal isOpen={isOpenAlert} onClose={closeAlert}>
-                <CardDetail dataDetail={dataDetail} funUp={funUp}  />
+            <Modal isOpen={isOpenAlert} onClose={closeAlert}> {/* VENTANA EMERGENTE */ }
+                <CardDetail dataDetail={dataDetail} funUp={funUp}  /> {/* dataDetail, contenido del reques, funUp, función heredada. */ }
             </Modal>
             <div className="items-center justify-center text-center mt-4 text-white">
                 <span className="text-3xl font-bold pt-4 text-white"><h1>POKEMONES</h1></span>

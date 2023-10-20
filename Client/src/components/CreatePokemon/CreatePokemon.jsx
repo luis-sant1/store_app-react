@@ -7,7 +7,7 @@ import axios from "axios";
 export default function CreatePokemon(){
     const [error,setError]=useState('')
     const [isOpenAlert, openAlert, closeAlert] = useModal(false);
-    const [data, setData] = useState({
+    const [data, setData] = useState({ //ESTADO POR DEFECTO DE LA DATA
         imagen:null,
 		nombre: "",
 		descripcion: "",
@@ -16,7 +16,7 @@ export default function CreatePokemon(){
         unidades:""
 	});
 
-    const handleChange = ({ currentTarget: input }) => {
+    const handleChange = ({ currentTarget: input }) => { // Entrada de datos en los inputs
 		setData({ ...data, [input.name]: input.value });
 		console.log(data)
 	};
@@ -24,11 +24,10 @@ export default function CreatePokemon(){
         setData({
             ...data,
             categoria: e.target.value
-        })
+        }) // Entrada de datos de los inputs (setea la categoria según option)
     }
     const handleImg = ({ currentTarget: input }) => {
-		setData({ ...data, [input.name]: input.files[0] });
-		// console.log(data)
+		setData({ ...data, [input.name]: input.files[0] }); // Manejador de imagen.
 	};
 
 
@@ -44,7 +43,7 @@ export default function CreatePokemon(){
             setError("Por favor agrega las categoria de tu Producto")
         }else{
             e.preventDefault();
-        console.log(data);
+        // console.log(data);
         let body = new FormData()
         data.imagen = data.imagen !== null && (body.append('imagen', data.imagen))
         data.nombre = data.nombre !== '' && (body.append('nombre', data.nombre))
@@ -56,8 +55,8 @@ export default function CreatePokemon(){
 		try {
             console.log(body)
 			const url = "http://localhost:3000/createProduct"
-			const { data: res } = await axios.post(url, body);
-            console.log(res)
+			const { data: res } = await axios.post(url, body); // HACEMOS POST DE DATA
+            // console.log(res)
             openAlert()
 		} catch (error) {
 			if (
@@ -74,7 +73,7 @@ export default function CreatePokemon(){
     return(
         <div className="flex justify-center m-10 w-98 ...">
                 <Modal isOpen={isOpenAlert} onClose={closeAlert}>
-                    <h2>POKEMON CREADO CORRECTAMENTE</h2>
+                    <h2>PRODUCTO CREADO CORRECTAMENTE</h2>
                 </Modal>
         <form className="flex flex-col min-w-[70%]  p-2 bg-white rounded-lg ..." onSubmit={handleSubmit}>
             <div className="flex justify-center m-2 ...">

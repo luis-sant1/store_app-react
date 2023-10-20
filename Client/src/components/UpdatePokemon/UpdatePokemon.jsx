@@ -4,10 +4,10 @@ import axios from "axios";
 import { useModal } from "../Modal/useModal"
 import Modal from "../Modal/Modal";
 
-export default function UpdatePokemon(idU, content){
-    
+export default function UpdatePokemon(idU){
+    // PARA QUE EL EDIT TENGA EFECTO HAY QUE REFRESCAR LA PÁGINA.
+    // Objeto idU contiene id y content.
     const id= idU.idU
-    console.log(id)
     const [isOpenAlert, openAlert, closeAlert] = useModal(false);
     const [error,setError]=useState('')
     const [data, setData] = useState({
@@ -30,7 +30,6 @@ export default function UpdatePokemon(idU, content){
     }
     const handleImg = ({ currentTarget: input }) => {
 		setData({ ...data, [input.name]: input.files[0] });
-		// console.log(data)
 	};
 
 
@@ -59,7 +58,7 @@ export default function UpdatePokemon(idU, content){
             console.log(body)
 			const { data: res } = await axios.put(`http://localhost:3000/updateProduct/${id}`, body); // Buscamos en la data de la respuesta con el id que viene de props (APP.JSX) y editamos.
             console.log(res)
-            openAlert("Pokemon actualizado")
+            openAlert("Producto actualizado")
 		} catch (error) {
 			if (
 				error.response &&
@@ -75,7 +74,7 @@ export default function UpdatePokemon(idU, content){
     return(
         <div className="flex justify-center m-10 w-98 ...">
                 <Modal isOpen={isOpenAlert} onClose={closeAlert}>
-                    <h2>POKEMON ACTUALIZADO CORRECTAMENTE</h2>
+                    <h2>PRODUCTO ACTUALIZADO CORRECTAMENTE</h2>
                 </Modal>
         <form className="flex flex-col min-w-[70%] p-2 bg-white rounded-lg ..." onSubmit={handleSubmit}>
             <div className="flex justify-center m-2 ...">

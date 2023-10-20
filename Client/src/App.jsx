@@ -1,3 +1,4 @@
+/// IMPORT DE LOS COMPONENTES.
 import { useState } from 'react'
 import Home from './components/Home/Home'
 import CreatePokemon from './components/CreatePokemon/CreatePokemon' 
@@ -5,10 +6,10 @@ import UpdatePokemon from './components/UpdatePokemon/UpdatePokemon'
 import logo from './images/pokemon.png'
 
 function App() {
-  const [page,setPage]=useState('home')
+  const [page,setPage]=useState('home') // Estado para la página actual. 
   const [id,setID]=useState('')
   const [content, setContent] = useState("")
-  const getContent=()=>{
+  const getContent=()=>{ // Condicional que setea el estado "page" para que se renderice. 
     if (page==='home') {
       return <Home toPageUp={toPageUp}/>
     }else if(page==='create'){
@@ -17,18 +18,18 @@ function App() {
       return <UpdatePokemon idU={id} content={content}/>
     }
   }
-  const toPage = page=>e=>{
+  const toPage = page=>e=>{ // Función que cambia de vista. 
     e.preventDefault()
     window.history.pushState(null,"Create",`/${page}`)
     setPage(page)
   }
-  const toPageUp=(page, id, data)=>e=>{
+  const toPageUp=(page, id, data)=>e=>{ // Función que cambia de vista (editar)
     e.preventDefault()
     console.log(id)
-    window.history.pushState(null,"Create",`/${page}/${id}`)
-    setPage(page)
-    setID(id)
-    setContent(data)
+    window.history.pushState(null,"Create",`/${page}/${id}`) // Crea una pagina con el estado page y el id. 
+    setPage(page) // Setea estado
+    setID(id) // Guarda id
+    setContent(data) // Guarda data del fetch
   }
 
   return (

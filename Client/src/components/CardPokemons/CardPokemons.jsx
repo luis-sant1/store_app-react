@@ -3,10 +3,7 @@ import { useModal } from "../Modal/useModal"
 import Modal from "../Modal/Modal";
 
 export default function CardPokemons (props){
-    console.log( "Esto es " +props.data)
-    // const openDetail=()=>{
-    //     openAlert()
-    // }
+    // Recibimos data de las props y pasamos los datos del fetch
     return(
         <button className='flex justify-center mb-6 mr-6 ml-6 sm:ml-auto sm:mr-auto md:mr-auto md:ml-auto' onClick={(e)=>props.openDetail(e, props.data)}>
         <div className="Card bg-zinc-50  cursor-pointer h-96 mb-6 mr-6 ml-6 sm:ml-auto sm:mr-auto md:mr-auto md:ml-auto " >
