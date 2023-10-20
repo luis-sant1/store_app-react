@@ -47,7 +47,7 @@ export default function Home(props) {
             <div className="items-center justify-center text-center mt-4 text-white">
                 <span className="text-3xl font-bold pt-4 text-white"><h1>POKEMONES</h1></span>
             </div>
-            <div className="flex p-8 justify-center">+
+            <div className="flex p-8 justify-center">
                 <div className="w-auto flex flex-wrap lg:gap-14 place-items-center m-8 pb-4 mb-8">
                     {error && <Error error={error} />} {/*Para mostrar el error.*/}
                     {loading && <Loading />} {/* Estado de la carga del req. */}

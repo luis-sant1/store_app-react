@@ -10,7 +10,7 @@ export default function CardDetail(props){
 
     const handleDelete=async()=>{
         try {
-          const {data:res}=await axios.post(`http://localhost:3000/deleteProduct/${props.dataDetail._id}`)
+          const {data:res}=await axios.delete(`http://localhost:3000/deleteProduct/${props.dataDetail._id}`)
           console.log(res)
           openAlert()
         } catch (error) {
