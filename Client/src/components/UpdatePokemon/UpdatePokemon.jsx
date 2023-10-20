@@ -37,13 +37,13 @@ export default function UpdatePokemon(props){
     const handleSubmit = async (e) => {
         if (data.imagen===null) {
             e.preventDefault()
-            setError("Por favor ingresa la imagen del Pokemon")
+            setError("Por favor ingresa la imagen del Producto")
         } else if (data.nombre,data.descripcion,data.unidades,data.precio==="") {
             e.preventDefault()
-            setError("Hay campos vacios, todos tienen que llenarse para crear un Pokemon")
+            setError("Hay campos vacios, todos tienen que llenarse para crear un Producto")
         }else if (data.categoria.length===0) {
             e.preventDefault()
-            setError("Por favor agrega las categoria de tu Pokemon")
+            setError("Por favor agrega las categoria de tu Producto")
         }else{
             e.preventDefault();
         console.log(data);
@@ -88,6 +88,7 @@ export default function UpdatePokemon(props){
                     name="imagen"
                     onChange={handleImg}
                     className="mt-4 mb-4 cursor-pointer w-62"
+                    
                     />
                 </div>
             </div>
@@ -98,6 +99,7 @@ export default function UpdatePokemon(props){
                 onChange={handleChange}
                 value={data.nombre}
                 className="h-10 col-span-2 mb-4 bg-slate-100 rounded-lg ..."
+                
             />
             <input
                 type="text"
@@ -111,8 +113,7 @@ export default function UpdatePokemon(props){
                 <label className="m-2"> Categoria:</label>
                 <br />
                 <select onChange={(e)=>handleSelect(e)} name="categoria" className="cursor-pointer" value={data.categoria} >   
-                <option value="Bicho">Bicho</option>
-                <option value="Ropa">Ropa</option>
+                    <option value="Ropa">Ropa</option>
                     <option value="Tegnologia">Tegnologia</option>
                     <option value="Accesorios">Accesorios</option>
                     <option value="Suplementos">Suplementos</option>
@@ -141,7 +142,7 @@ export default function UpdatePokemon(props){
                 className="h-10 mb-4 bg-slate-100 rounded-lg ..."
             />
             
-            {error && <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center text-center'>{error}</div>}
+            {error && <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center '>{error}</div>}
             <button type="submit" className="m-4 bg-green-50 h-10 rounded-full text-white font-semibold text-white-500 ...">
                 ACTUALIZAR
             </button>

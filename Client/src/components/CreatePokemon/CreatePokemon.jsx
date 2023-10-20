@@ -35,13 +35,13 @@ export default function CreatePokemon(){
     const handleSubmit = async (e) => {
         if (data.imagen===null) {
             e.preventDefault()
-            setError("Por favor ingresa la imagen del Pokemon")
+            setError("Por favor ingresa la imagen del Producto")
         } else if (data.nombre,data.descripcion,data.precio,data.unidades==="") {
             e.preventDefault()
-            setError("Hay campos vacios, todos tienen que llenarse para crear un Pokemon")
+            setError("Hay campos vacios, todos tienen que llenarse para crear un Producto")
         }else if (data.categoria.length===0) {
             e.preventDefault()
-            setError("Por favor agrega las categoria de tu Pokemon")
+            setError("Por favor agrega las categoria de tu Producto")
         }else{
             e.preventDefault();
         console.log(data);

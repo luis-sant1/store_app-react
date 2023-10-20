@@ -21,7 +21,7 @@ export default function CardPokemons (props){
 
                 <div className='w-full h-full flex items-center justify-center rounded-b-lg'>
                     <div className='flex flex-col w-1/2 gap-2'>
-                        <span>Precio: {props.data.descripcion}$</span>
+                        <span>Precio: {props.data.precio}$</span>
                         <span>Unidades: {props.data.unidades}</span> 
                     </div>
                     {/* <div className='flex flex-col items-center justify-center space-y-4'>
