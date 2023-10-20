@@ -1,16 +1,16 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const Pokemons = require('../models/pokemons');
-const addPokemons = require('./dbPokemons'); // Agrega las Pociones
+const prSchema = require('../models/products');
+const addDocuments = require('./dbInsert'); // Agrega las Pociones
 
 mongoose.set('strictQuery', false)
 
 mongoose.connect(process.env.URI) 
    .then(async()=> {
-      const pokemons = await Pokemons.find().limit(1).lean();
-      if (pokemons.length === 0) {
-         addPokemons()
-         console.log('Pokemons correctly added');
+      const items = await prSchema.find().limit(1).lean();
+      if (items.length === 0) {
+         addDocuments()
+         console.log('Items correctly added');
       }
       console.log('Database succesfully connected')
    })

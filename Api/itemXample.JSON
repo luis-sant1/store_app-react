@@ -1,0 +1,17 @@
+{
+    "data": [
+        {
+            "_id": "65315e91919cfb744bd079a1",
+            "id": 4,
+            "nombre": "DELL GOD",
+            "descripcion": "Esto es una descripcion",
+            "precio": 45,
+            "unidades": 140,
+            "categoria": "PC",
+            "fecha": "2004-02-02T00:00:00.000Z",
+            "createdAt": "2023-10-19T16:51:29.396Z",
+            "updatedAt": "2023-10-19T16:51:29.396Z",
+            "__v": 0
+        }
+    ]
+}

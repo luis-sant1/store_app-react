@@ -17,7 +17,7 @@ const options = {
    overwrite: true,
 };
  
-const pokemonsFolder = 'PokemonsImage';
+const itemsFolder = 'itemsImage';
  
 const uploadImage = async (imagePath, folder) => {
    const optionsWithFolder = { ...options, folder };
@@ -25,7 +25,7 @@ const uploadImage = async (imagePath, folder) => {
 };
 
 const uploadImageEvent = async (imagePath) => {
-   return await uploadImage(imagePath, pokemonsFolder);
+   return await uploadImage(imagePath, itemsFolder);
 };
  
 

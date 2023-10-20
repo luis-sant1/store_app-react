@@ -1,5 +1,5 @@
 const express = require('express')
-const routerPotions = require("./Routes/routerPotions");
+const routes = require("./Routes/routes");
 const morgan = require('morgan') // See https request
 const cors=require('cors')
 //Config 
@@ -11,9 +11,13 @@ require('./db/db');
 // Settings
 const app = express();
 
+//Parse to JSON
+app.use(express.json()); 
 
+// FIX CORS
 app.use(cors())
+
 // Routes
-app.use("/", routerPotions);
+app.use("/", routes);
 
 module.exports = app;
