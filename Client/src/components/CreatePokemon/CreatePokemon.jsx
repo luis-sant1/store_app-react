@@ -78,15 +78,17 @@ export default function CreatePokemon(){
                 </Modal>
         <form className="flex flex-col min-w-[70%] bg-slate-200 p-2 bg-white rounded-lg ..." onSubmit={handleSubmit}>
             <div className="flex justify-center m-2 ...">
-                <h1 className="text-xl font-semibold ...">CREA TU POKEMON</h1>
+                <h1 className="text-xl font-semibold text-black ...">CREA TU PRODUCTO</h1>
             </div>
-            <div className="items-center justify-center">
-                <input 
-                type="file" 
-                name="imagen"
-                onChange={handleImg}
-                className="m-4"
-                />
+            <div className=" sm:w-96 cursor-pointer">
+                <div className="items-center justify-center cursor-pointer">
+                    <input 
+                    type="file" 
+                    name="imagen"
+                    onChange={handleImg}
+                    className="mt-4 mb-4 cursor-pointer w-62"
+                    />
+                </div>
             </div>
             <input
                 type="text"
@@ -107,24 +109,16 @@ export default function CreatePokemon(){
             <div className="ml-2 flex flex-basic">
                 <label className="m-2"> Categoria:</label>
                 <br />
-                <select onChange={(e)=>handleSelect(e)} name="categoria" value={data.categoria} >   
-                    <option value="Bicho">Bicho</option>
-                    <option value="Dragón">Dragón</option>
-                    <option value="Eléctrico">Eléctrico</option>
-                    <option value="Hada">Hada</option>
-                    <option value="Lucha">Lucha</option>
-                    <option value="Fuego">Fuego</option>
-                    <option value="Volador">Volador</option>
-                    <option value="Fantasma">Fantasma</option>
-                    <option value="Planta">Planta</option>
-                    <option value="Tierra">Tierra</option>
-                    <option value="Hielo">Hielo</option>
-                    <option value="Normal">Normal</option>
-                    <option value="Veneno">Veneno</option>
-                    <option value="Psíquico">Psíquico</option>
-                    <option value="Roca">Roca</option>
-                    <option value="Acero">Acero</option>
-                    <option value="Agua">Agua</option>
+                <select onChange={(e)=>handleSelect(e)} name="categoria" className="cursor-pointer" value={data.categoria} >   
+                    <option value="Ropa">Ropa</option>
+                    <option value="Tegnologia">Tegnologia</option>
+                    <option value="Accesorios">Accesorios</option>
+                    <option value="Suplementos">Suplementos</option>
+                    <option value="Herramientas">Herramientas</option>
+                    <option value="Articulos_del_hogar">Articulos del hogar</option>
+                    <option value="Libros">Libros</option>
+                    <option value="Articulos_de_belleza">Articulos de belleza</option>
+                    <option value="Arte">Arte</option>
                 </select>
             </div>
             <input
@@ -134,7 +128,7 @@ export default function CreatePokemon(){
                 onChange={handleChange}
                 value={data.precio}
                 
-                className="h-10 ml-2 m-2 bg-slate-100 rounded-lg ..."
+                className="h-10 mb-4 bg-slate-100 rounded-lg ..."
             />
             <input
                 type="text"
@@ -142,10 +136,10 @@ export default function CreatePokemon(){
                 name="unidades"
                 onChange={handleChange}
                 value={data.unidades}
-                className="h-10 ml-2 m-2 bg-slate-100 rounded-lg ..."
+                className="h-10 mb-4 bg-slate-100 rounded-lg ..."
             />
             {error && <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center text-center'>{error}</div>}
-            <button type="submit" className="m-4 bg-yellow-300 h-10 rounded-full text-white font-semibold text-white-500 ...">
+            <button type="submit" className="m-4 bg-green-50 h-10 rounded-full text-white font-semibold text-white-500 ...">
                 Crear
             </button>
         </form>

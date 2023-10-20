@@ -8,7 +8,8 @@ export default function CardPokemons (props){
     //     openAlert()
     // }
     return(
-        <div className="Card bg-zinc-200 cursor-pointer h-98 mb-6 mr-6 ml-6 sm:ml-auto sm:mr-auto md:mr-auto md:ml-auto " >
+        <button className='flex justify-center mb-6 mr-6 ml-6 sm:ml-auto sm:mr-auto md:mr-auto md:ml-auto' onClick={(e)=>props.openDetail(e, props.data)}>
+        <div className="Card bg-zinc-50  cursor-pointer h-96 mb-6 mr-6 ml-6 sm:ml-auto sm:mr-auto md:mr-auto md:ml-auto " >
                  
             <div className="max-w-98 max-h-98 bg-secondary flex flex-col items-center justify-center m-8">
                 <div >
@@ -23,14 +24,15 @@ export default function CardPokemons (props){
                         <span>Precio: {props.data.descripcion}$</span>
                         <span>Unidades: {props.data.unidades}</span> 
                     </div>
-                    <div className='flex flex-col items-center justify-center space-y-4'>
-                        <button className='w-full rounded-lg shadow-lg bg-green-400 p-1 text-sm font-medium' onClick={(e)=>props.openDetail(e, props.data)}>Ver Detalles</button>
-                    </div>
+                    {/* <div className='flex flex-col items-center justify-center space-y-4'>
+                        
+                    </div> */}
                 </div>
             
 
                 
             </div>
     </div>
+    </button>
     )
 }
