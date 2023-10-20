@@ -110,7 +110,7 @@ export default function CreatePokemon(){
                 <br />
                 <select onChange={(e)=>handleSelect(e)} name="categoria" className="cursor-pointer" value={data.categoria} >   
                     <option value="Ropa">Ropa</option>
-                    <option value="Tegnologia">Tegnologia</option>
+                    <option value="Tegnologia">Tecnologia</option>
                     <option value="Accesorios">Accesorios</option>
                     <option value="Suplementos">Suplementos</option>
                     <option value="Herramientas">Herramientas</option>
