@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Home from './components/Home/Home'
 import CreatePokemon from './components/CreatePokemon/CreatePokemon' 
 import UpdatePokemon from './components/UpdatePokemon/UpdatePokemon'
+import CardPokemons from './components/CardPokemons/CardPokemons'
 import logo from './images/pokemon.png'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -26,7 +27,7 @@ function App() {
 
   const handleChange=e=>{
     setBusqueda(e.target.value);
-    console.log("Buqueda: "+e.target.value)
+    filtrado(e.target.value)
   }
 
   const filtrado = (ParamBusqueda) =>{
@@ -37,7 +38,7 @@ function App() {
       return elemento;
     }
     })
-    setRegistro(resultadosBusqueda);
+    setProductos(resultadosBusqueda);
   }
 
   useEffect(()=>{
@@ -79,6 +80,7 @@ function App() {
         <input class="w-64 h-10 pl-2 pr-8 rounded-l-full focus:outline-none m-2 p-1" type="text" onChange={handleChange} placeholder="Buscar..." />
         <button className="btn btn-success"><FontAwesomeIcon icon={faSearch}/></button>
       </header>
+      
       {getContent()}
     </div>
   )
