@@ -25,7 +25,6 @@ function App() {
   }
   const toPageUp=(page, id, data)=>e=>{ // Función que cambia de vista (editar)
     e.preventDefault()
-    console.log(id)
     window.history.pushState(null,"Create",`/${page}/${id}`) // Crea una pagina con el estado page y el id. 
     setPage(page) // Setea estado
     setID(id) // Guarda id

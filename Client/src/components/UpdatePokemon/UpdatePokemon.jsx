@@ -15,7 +15,7 @@ export default function UpdatePokemon(idU){
 		nombre: idU.content.nombre.toString(),
 		descripcion: idU.content.descripcion.toString(),
         unidades:idU.content.unidades.toString(),
-        categoria:[],
+        categoria:idU.content.categoria.toString(),
         precio: idU.content.precio.toString()
 	});
     const handleChange = ({ currentTarget: input }) => {
@@ -111,7 +111,7 @@ export default function UpdatePokemon(idU){
             <div className="ml-2 flex flex-basic">
                 <label className="m-2"> Categoria:</label>
                 <br />
-                <select onChange={(e)=>handleSelect(e)} name="categoria" className="cursor-pointer" value={data.categoria} >   
+                <select onChange={(e)=>handleSelect(e)} name="categoria" className="cursor-pointer" value={data.categoria} multiple={false}>   
                     <option value="Ropa">Ropa</option>
                     <option value="Tegnologia">Tegnologia</option>
                     <option value="Accesorios">Accesorios</option>
