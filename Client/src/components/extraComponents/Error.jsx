@@ -6,7 +6,7 @@ export function Error(error) {
     const toArr = Object.values(error) // Convertimos error en un arr, ya que React no deja renderizar objetos.
    
     return (
-        <>
+        <div>
             {/* ICONO*/}
             <div className="icon-text">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -16,8 +16,8 @@ export function Error(error) {
             </div>
 
             <p className="block">
-                There was an error in your submission: {toArr}. <a href="#">Please try again</a>.
+                There was an error in your submission: {toArr.toString()}. <a href="#">Please try again</a>.
             </p>
-        </>
+        </div>
     )
 }
