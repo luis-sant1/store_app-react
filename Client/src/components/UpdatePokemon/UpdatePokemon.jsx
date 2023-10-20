@@ -20,7 +20,7 @@ export default function UpdatePokemon(idU){
 	});
     const handleChange = ({ currentTarget: input }) => {
 		setData({ ...data, [input.name]: input.value });
-		console.log(data)
+		// console.log(data)
 	};
     function handleSelect(e){
         setData({
@@ -45,7 +45,7 @@ export default function UpdatePokemon(idU){
             setError("Por favor agrega las categoria de tu Producto")
         }else{
             e.preventDefault();
-        console.log(data);
+        // console.log(data);
         let body = new FormData()
         data.imagen = data.imagen !== null && (body.append('imagen', data.imagen))
         data.nombre = data.nombre !== '' && (body.append('nombre', data.nombre))
@@ -55,9 +55,7 @@ export default function UpdatePokemon(idU){
         data.precio = data.precio !== '' && (body.append('precio', data.precio))
 
 		try {
-            console.log(body)
 			const { data: res } = await axios.put(`http://localhost:3000/updateProduct/${id}`, body); // Buscamos en la data de la respuesta con el id que viene de props (APP.JSX) y editamos.
-            console.log(res)
             openAlert("Producto actualizado")
 		} catch (error) {
 			if (

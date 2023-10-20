@@ -12,7 +12,7 @@ export default function CreatePokemon(){
 		nombre: "",
 		descripcion: "",
         precio:"",
-        categoria:[],
+        categoria:"",
         unidades:""
 	});
 
