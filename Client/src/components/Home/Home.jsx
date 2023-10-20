@@ -48,8 +48,8 @@ export default function Home(props) {
                     )).slice(firtsIndex, lastIndex)}
                 </div>
             </div>
-            <section>
-                <Pagination productsPerPage={productsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} total={total} />
+            <section className="pb-4 flex justify-center">
+                <Pagination productsPerPage={productsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} total={total}/>
             </section>
         </div>
     )
