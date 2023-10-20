@@ -140,7 +140,7 @@ export default function UpdatePokemon(idU){
             />
             
             {error && <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center '>{error}</div>}
-            <button type="submit" className="m-4 bg-green-50 h-10 rounded-full text-white font-semibold text-white-500 ...">
+            <button type="submit" className="m-4 bg-violet-100 h-10 rounded-full text-white font-semibold text-white-500 ...">
                 ACTUALIZAR
             </button>
         </form>

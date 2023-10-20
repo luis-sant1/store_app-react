@@ -34,7 +34,7 @@ function App() {
   return (
     <div>
       <header className="grid grid-cols-3 bg-white h-14">
-        <img src={logo} alt="img_not_fund" className='ml-4 w-14 h-14' />
+        <img src={logo} alt="img_not_fund" className='ml-4 w-28 h-auto' />
         <button onClick={toPage("home")} className='rounded-lg shadow-lg bg-yellow-200 m-2  p-1 text-sm font-medium'>Inicio</button>
         <button onClick={toPage("create")} className='rounded-lg shadow-lg bg-green-50 m-2 p-1 text-sm font-medium'>Crear</button>
       </header>
