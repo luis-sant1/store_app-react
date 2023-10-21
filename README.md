@@ -21,6 +21,9 @@ Una lista de tecnologías utilizadas dentro del proyecto:
 * [Express]: Versión ^4.18.2   
 * [Cloudinary]: Versión ^1.37.0 
 * [Mongoose]: Versión ^7.2.2
+* [Bulma.io]: versión ^0.9.4
+* [Axios]: version ^1.4.0
+* [FontAwesome]: version ^6.4.2
 ## Instalación
 ***
 Lo primero que deberemos hacer será clonar el repositorio y luego seguir los siguientes pasos para ejecutar el proyecto:
