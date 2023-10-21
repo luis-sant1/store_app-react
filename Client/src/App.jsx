@@ -8,6 +8,7 @@ import logo from './images/pokemon.png'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Search } from './components/Search/Search'
 function App() {
 
   const[productos, setProductos] = useState([]);
@@ -38,7 +39,7 @@ function App() {
     }
     })
     setProductos(resultadosBusqueda);
-    console.log(resultadosBusqueda)
+    console.log(productos)
   }
 
   useEffect(()=>{
@@ -58,6 +59,8 @@ function App() {
       return <CreatePokemon/>
     }else if(page==='update'){
       return <UpdatePokemon idU={id} content={content}/>
+    }else if(page === 'search'){
+      return <Search />
     }
   }
   const toPage = page=>e=>{ // Función que cambia de vista. 
@@ -80,7 +83,7 @@ function App() {
         <button onClick={toPage("home")} className='rounded-lg shadow-lg bg-yellow-200 m-2  p-1 text-sm font-medium'>Inicio</button>
         <button onClick={toPage("create")} className='rounded-lg shadow-lg bg-green-50 m-2 p-1 text-sm font-medium'>Crear</button>
         <input className="w-64 h-10 pl-2 pr-8 rounded-l-full focus:outline-none m-2 p-1" type="text" onChange={handleChange} placeholder="Buscar..." />
-        <button className="btn btn-success"><FontAwesomeIcon icon={faSearch}/></button>
+        <button className="btn btn-success" onClick={toPage("search")}><FontAwesomeIcon icon={faSearch}/></button>
       </header>
       
       {getContent()}
