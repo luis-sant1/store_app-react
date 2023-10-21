@@ -28,7 +28,7 @@ function App() {
   const handleChange=e=>{
     setBusqueda(e.target.value);
     filtrado(e.target.value)
-  }
+  } 
 
   const filtrado = (ParamBusqueda) =>{
     var resultadosBusqueda = tablaProductos.filter((elemento)=>{
@@ -39,7 +39,6 @@ function App() {
     }
     })
     setProductos(resultadosBusqueda);
-    console.log(productos)
   }
 
   useEffect(()=>{
@@ -60,7 +59,7 @@ function App() {
     }else if(page==='update'){
       return <UpdatePokemon idU={id} content={content}/>
     }else if(page === 'search'){
-      return <Search />
+      return <Search  productos = {productos}/>
     }
   }
   const toPage = page=>e=>{ // Función que cambia de vista. 
@@ -82,7 +81,7 @@ function App() {
         <img src={logo} alt="img_not_fund" className='ml-4 w-28 h-auto' />
         <button onClick={toPage("home")} className='rounded-lg shadow-lg bg-yellow-200 m-2  p-1 text-sm font-medium'>Inicio</button>
         <button onClick={toPage("create")} className='rounded-lg shadow-lg bg-green-50 m-2 p-1 text-sm font-medium'>Crear</button>
-        <input className="w-64 h-10 pl-2 pr-8 rounded-l-full focus:outline-none m-2 p-1" type="text" onChange={handleChange} placeholder="Buscar..." />
+        <input onFocus = {toPage("search")}className="w-64 h-10 pl-2 pr-8 rounded-l-full focus:outline-none m-2 p-1" type="text" onChange={handleChange} placeholder="Buscar..." />
         <button className="btn btn-success" onClick={toPage("search")}><FontAwesomeIcon icon={faSearch}/></button>
       </header>
       
