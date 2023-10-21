@@ -31,15 +31,15 @@ Lo primero que deberemos hacer será clonar el repositorio y luego seguir los si
 ### Como Ejecutar el Api
 ***
 * Para correr el Api lo primero que debemos hacer es abrir una terminal y colocar los siguientes tres códigos, uno por uno, para correr la base de datos:
-* ```cd Api
-* ```npm i
-* ```npm run start 
+* ``` cd Api
+* ``` npm i
+* ``` npm run start 
 * Y ya estaría corriendo nuestra base de datos.
 
 ### Como Ejecutar el Cliente
 ***
 * Para correr el Cliente lo primero que debemos hacer es abrir una terminal (diferente a la del Api de preferencia) y colocar los siguientes tres códigos, uno por uno, para correr el Cliente:
-* ```cd Client
-* ```npm i
-* ```npm run dev
+* ``` cd Client
+* ``` npm i
+* ``` npm run dev
 * Y ya estaría corriendo nuestro cliente, y solo debemos ir al link que nos da la terminal.  
