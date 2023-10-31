@@ -54,7 +54,7 @@ export default function CreatePokemon(){
 
 		try {
             console.log(body)
-			const url = "http://localhost:3000/createProduct"
+			const url = import.meta.env.VITE_FETCH_CREATE;
 			const { data: res } = await axios.post(url, body); // HACEMOS POST DE DATA
             // console.log(res)
             openAlert()
