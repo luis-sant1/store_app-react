@@ -10,7 +10,7 @@ import { Error } from "../extraComponents/Error";
 import { Pagination } from "../extraComponents/Pagination";
 
 export default function Home(props) {
-
+    //const url = import.meta.env.VITE_FETCH_ALL
     const funUp = props // TRAE FUNCiÓN
 
     //ESTADOS
@@ -22,7 +22,7 @@ export default function Home(props) {
 
 
 
-    const { data, loading, error, total } = useFetch(`http://localhost:3000/products`); // uso del custom hook useFetch para traer la data.
+    const { data, loading, error, total } = useFetch(import.meta.env.VITE_FETCH_ALL); // uso del custom hook useFetch para traer la data.
     const openDetail = (e, data) => { // Ventana de ver detalles
         setDataDetail(data) // Setear la data a la ventana.
         openAlert()

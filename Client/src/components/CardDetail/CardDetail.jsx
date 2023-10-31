@@ -8,7 +8,7 @@ export default function CardDetail(props){
 
     const handleDelete=async()=>{
         try {
-          const {data:res}=await axios.delete(`http://localhost:3000/deleteProduct/${props.dataDetail._id}`) // Hacemos delete obtenindo el id de las props.
+          const {data:res}=await axios.delete(import.meta.env.VITE_FETCH_DELETE + props.dataDetail._id) // Hacemos delete obtenindo el id de las props.
           console.log(res)
           openAlert()
         } catch (error) {

@@ -55,7 +55,7 @@ export default function UpdatePokemon(idU){
         data.precio = data.precio !== '' && (body.append('precio', data.precio))
 
 		try {
-			const { data: res } = await axios.put(`http://localhost:3000/updateProduct/${id}`, body); // Buscamos en la data de la respuesta con el id que viene de props (APP.JSX) y editamos.
+			const { data: res } = await axios.put(import.meta.env.VITE_FETCH_PUT + id, body); // Buscamos en la data de la respuesta con el id que viene de props (APP.JSX) y editamos.
             openAlert("Producto actualizado")
 		} catch (error) {
 			if (
