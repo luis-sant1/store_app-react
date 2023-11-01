@@ -39,15 +39,19 @@ export default function Home(props) {
             <div className="items-center justify-center text-center mt-4 text-white">
                 <span className="text-3xl font-bold pt-4 text-white"><h1>Total Market</h1></span>
             </div>
+            
             <div className="flex p-8 justify-center">
-                <div className="w-auto flex flex-wrap lg:gap-14 place-items-center m-8 pb-4 mb-8">
+                <div className="w-auto flex flex-wrap place-items-center m-8 pb-4 mb-8">
                     {error && <Error error={error} />} {/*Para mostrar el error.*/}
                     {loading && <Loading />} {/* Estado de la carga del req. */}
                     {data?.map((e) => ( // Pasamos por cada uno de los productos, colocamos una key y traemos la data. 
                         <CardPokemons key={e._id} data={e} openDetail={openDetail} /> // Arreglado errox "Every child has to be a unique key."
                     )).slice(firtsIndex, lastIndex)}
                 </div>
+            
             </div>
+
+            
             <section className="pb-4 flex justify-center">
                 <Pagination productsPerPage={productsPerPage} currentPage={currentPage} setCurrentPage={setCurrentPage} total={total}/>
             </section>

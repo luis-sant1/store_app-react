@@ -78,11 +78,12 @@ function App() {
   return (
     <div className='w-full'>
       <header className="grid grid-cols-5 bg-white h-14 w-full">
-        <img src={logo} alt="img_not_fund" className='ml-4 w-28 h-auto' />
-        <button onClick={toPage("home")} className='rounded-lg shadow-lg bg-yellow-200 m-2  p-1 text-sm font-medium'>Inicio</button>
+        <button onClick={toPage("home")}><img src={logo} alt="img_not_fund" className='ml-4 w-28 h-auto' /></button>
+        {/* <button onClick={toPage("home")} className='rounded-lg shadow-lg bg-yellow-200 m-2  p-1 text-sm font-medium'>Inicio</button> */}
         <button onClick={toPage("create")} className='rounded-lg shadow-lg bg-green-50 m-2 p-1 text-sm font-medium'>Crear</button>
         <input onFocus = {toPage("search")}className="w-16 h-10 pl-2 pr-8 rounded-l-full focus:outline-none mr-2 mt-2 pr-1 pt-1" type="text" onChange={handleChange} placeholder="Buscar" />
         <button className="btn btn-success" onClick={toPage("search")}><FontAwesomeIcon icon={faSearch}/></button>
+        <button className='border-2 border-black w-12 h-11 text-center rounded-lg m-2 p-1 text-sm font-medium'>Menú</button>
       </header>
       
       {getContent()}
