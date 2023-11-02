@@ -79,7 +79,7 @@ export default function UpdatePokemon(idU){
                 <h1 className="text-xl font-semibold text-black...">EDITA TU PRODUCTO</h1>
             </div>
             
-            <label htmlFor="" id="name" className="pt-2"><b>Nombre del Producto</b></label>
+            <label htmlFor="" id="name" className="pl-1.5 pt-2"><b>Nombre del Producto</b></label>
             <input
                 type="text"
                 placeholder="Nombre del Producto"
@@ -90,7 +90,7 @@ export default function UpdatePokemon(idU){
                 id="name"
                 
             />
-            <label htmlFor="" id="description"><b>Descripcion</b></label>
+            <label htmlFor="" id="description" className="pl-1.5"><b>Descripcion</b></label>
             <input
                 type="text"
                 placeholder="Descripcion..."
@@ -101,7 +101,7 @@ export default function UpdatePokemon(idU){
                 id="description"
             />
             <div className="ml-2 flex flex-basic">
-                <label className="m-2"><b>Categoria:</b></label>
+                <label className="m-2 pl-1.5"><b>Categoria:</b></label>
                 <br />
                 <select onChange={(e)=>handleSelect(e)} name="categoria" className="cursor-pointer" value={data.categoria} multiple={false}>   
                     <option value="Ropa">Ropa</option>
@@ -115,7 +115,7 @@ export default function UpdatePokemon(idU){
                     <option value="Arte">Arte</option>
                 </select>
             </div>
-            <label htmlFor="" id="price" className="pt-2"><b>Precio</b></label>
+            <label htmlFor="" id="price" className="pt-2 pl-1.5"><b>Precio</b></label>
             <input
                 type="text"
                 placeholder="Precio"
@@ -125,7 +125,7 @@ export default function UpdatePokemon(idU){
                 className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 id="price"
             />
-            <label htmlFor="" id="units"><b>Unidades</b></label>
+            <label htmlFor="" id="units" className="pl-1.5"><b>Unidades</b></label>
             <input
                 type="text"
                 placeholder="Unidades"
@@ -137,9 +137,9 @@ export default function UpdatePokemon(idU){
                 id="units"
             />
 
-            <label htmlFor="" id="img"><b>Selecciona la imagen de tu producto</b></label>
+            <label htmlFor="" id="img" className="pl-1.5"><b>Selecciona la imagen de tu producto</b></label>
             <div className="sm:w-96">
-                <div className="items-center justify-center cursor-pointer">
+                <div className="pl-1.5 items-center justify-center cursor-pointer">
                     <input 
                     type="file" 
                     name="imagen"
