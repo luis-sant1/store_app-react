@@ -1,13 +1,10 @@
 'use client';
 import React from "react";
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
-import Link from 'next/link';
-import { useState } from "react";
-import { useModal } from "../Modal/useModal"
-import Modal from "../Modal/Modal";
-import axios from "axios";
 
-export default function SingupComponent() {
+
+
+export default function Registrate() {
   return (
     <form className="flex max-w-md flex-col gap-4">
       <div>
