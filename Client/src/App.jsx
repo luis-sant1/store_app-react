@@ -14,7 +14,7 @@ import { Search } from './components/Search/Search'
 import SingUp from './components/Registrate/Registrate';
 import { Dropdown } from 'flowbite-react' 
 import Registrate from './components/Registrate/Registrate';
-
+import Iniciarsesion from './components/Iniciarsesion/Iniciarsesion';
 
 
 
@@ -71,6 +71,8 @@ function App() {
       return <Search  productos = {productos}/>
     }else if(page==='Registrate') {
       return <Registrate/>
+    }else if(page==='Iniciar') {
+      return <Iniciarsesion/>
     }
   }
   const toPage = page=>e=>{ // Función que cambia de vista. 
@@ -100,7 +102,7 @@ function App() {
             <Dropdown.Item><button onClick={toPage("create")} className=''>Crear</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("home")} className=''>Inicio</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("Registrate")} className=''>Registrate</button></Dropdown.Item>
-            <Dropdown.Item>Sign out</Dropdown.Item>
+            <Dropdown.Item><button onClick={toPage("Iniciar")} className=''>Iniciar Sesión</button></Dropdown.Item>
           </Dropdown>
         </div>
       </header>
