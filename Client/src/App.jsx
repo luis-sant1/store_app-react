@@ -11,7 +11,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Search } from './components/Search/Search'
 
+import SingUp from './components/SignUp/SignUp'
 import { Dropdown } from 'flowbite-react' 
+
 
 
 
@@ -66,6 +68,8 @@ function App() {
       return <UpdatePokemon idU={id} content={content}/>
     }else if(page === 'search'){
       return <Search  productos = {productos}/>
+    }else if(page=== 'SingUp') {
+      return <SingUp/>
     }
   }
   const toPage = page=>e=>{ // Función que cambia de vista. 
@@ -93,8 +97,8 @@ function App() {
         <div className=' pt-1.5  mr-2'>
           <Dropdown label="Menú" dismissOnClick={false} className=''>
             <Dropdown.Item ><button onClick={toPage("create")} className=''>Crear</button></Dropdown.Item>
-            < Dropdown.Item><button onClick={toPage("home")} className=''>Inicio</button></Dropdown.Item>
-            <Dropdown.Item>Earnings</Dropdown.Item>
+            <Dropdown.Item><button onClick={toPage("home")} className=''>Inicio</button></Dropdown.Item>
+            <Dropdown.Item><button onClick={toPage("SingUp")} className=''>Registrate</button></Dropdown.Item>
             <Dropdown.Item>Sign out</Dropdown.Item>
           </Dropdown>
         </div>

@@ -4,6 +4,8 @@ import axios from "axios";
 import { useModal } from "../Modal/useModal"
 import Modal from "../Modal/Modal";
 
+import { Label, Select } from 'flowbite-react';
+
 export default function UpdatePokemon(idU){
     // PARA QUE EL EDIT TENGA EFECTO HAY QUE REFRESCAR LA PÁGINA.
     // Objeto idU contiene id y content.
@@ -102,8 +104,8 @@ export default function UpdatePokemon(idU){
             />
             <div className="ml-2 flex flex-basic">
                 <label className="m-2 pl-1.5"><b>Categoria:</b></label>
-                <br />
-                <select onChange={(e)=>handleSelect(e)} name="categoria" className="cursor-pointer" value={data.categoria} multiple={false}>   
+                
+                {/* <select onChange={(e)=>handleSelect(e)} name="categoria" className="cursor-pointer" value={data.categoria} multiple={false}>   
                     <option value="Ropa">Ropa</option>
                     <option value="Tegnologia">Tecnologia</option>
                     <option value="Accesorios">Accesorios</option>
@@ -113,7 +115,20 @@ export default function UpdatePokemon(idU){
                     <option value="Libros">Libros</option>
                     <option value="Articulos_de_belleza">Articulos de belleza</option>
                     <option value="Arte">Arte</option>
-                </select>
+                </select> */}
+
+                <Select id="countries" onChange={(e)=>handleSelect(e)} name="categoria" className="cursor-pointer" required>
+                    <option value="Ropa">Ropa</option>
+                    <option value="Tecnologia">Tecnologia</option>
+                    <option value="Accesorios">Accesorios</option>
+                    <option value="Suplementos">Suplementos</option>
+                    <option value="Herramientas">Herramientas</option>
+                    <option value="Articulos_del_hogar">Articulos del hogar</option>
+                    <option value="Libros">Libros</option>
+                    <option value="Articulos_de_belleza">Articulos de belleza</option>
+                    <option value="Arte">Arte</option>
+                </Select>
+
             </div>
             <label htmlFor="" id="price" className="pt-2 pl-1.5"><b>Precio</b></label>
             <input
