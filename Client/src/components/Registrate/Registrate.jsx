@@ -59,6 +59,30 @@ export default function Registrate() {
         }
     };
 
+    function ValidateEmail(email) {
+      // Validar que el correo electrónico tenga el formato correcto
+      const emailRegex = /^\S+@\S+\.\S+$/;
+      return emailRegex.test(email);
+    }
+    
+    function ValidateName(firstname) {
+        // Validar que el correo electrónico tenga el formato correcto
+        const nameRegex = /^[a-zA-ZÀ-ÿ\s]{4,90}$/;
+        return nameRegex.test(firstname);
+      }
+    
+    function ValidateLastname(lastname) {
+        // Validar que el correo electrónico tenga el formato correcto
+        const lastNameRegex = /^[a-zA-ZÀ-ÿ\s]{4,90}$/;
+        return lastNameRegex.test(lastname);
+      }
+    
+    function ValidatePassword(password) {
+        // Validar que el correo electrónico tenga el formato correcto
+        const passwordRegex = /^.{6,24}$/;
+        return passwordRegex.test(password);
+      }
+
     return (
         <div className="flex justify-center m-10 w-98 ...">
             <Modal isOpen={isOpenAlert} onClose={closeAlert}>
@@ -76,6 +100,7 @@ export default function Registrate() {
                     name="firstname"
                     value={data.firstname}
                     onChange={handleChange}
+                    script={ValidateName}
                     className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                     id="firstname"
                 />
@@ -87,6 +112,7 @@ export default function Registrate() {
                 name="lastname"
                 onChange={handleChange}
                 value={data.lastname}
+                script={ValidateLastname}
                 className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 id="lastname"
             />
@@ -98,6 +124,7 @@ export default function Registrate() {
                 name="email"
                 onChange={handleChange}
                 value={data.email}   
+                script={ValidateEmail}
                 className="h-11 col-span-2 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 id="email"
             />
@@ -109,6 +136,7 @@ export default function Registrate() {
                 name="password"
                 onChange={handleChange}
                 value={data.password}
+                script={ValidatePassword}
                 
                 className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 id="password"
