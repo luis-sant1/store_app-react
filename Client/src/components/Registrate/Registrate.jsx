@@ -1,3 +1,5 @@
+// Componente de registrar ususrio
+
 import React, { useState } from "react";
 import { Button, Checkbox, Label, TextInput } from 'flowbite-react';
 import { useModal } from "../Modal/useModal";
@@ -17,8 +19,10 @@ export default function Registrate() {
     });
 
     const handleChange = ({ currentTarget: input }) => {
-        setData({ ...data, [input.name]: input.value });
+        setData({ ...data, [input.fisrtname]: input.value });
     };
+
+    // Validacion  de los formularios
 
     const validateForm = () => {
         if (
@@ -59,6 +63,8 @@ export default function Registrate() {
         }
     };
 
+
+
     function ValidateEmail(email) {
       // Validar que el correo electrónico tenga el formato correcto
       const emailRegex = /^\S+@\S+\.\S+$/;
@@ -66,19 +72,19 @@ export default function Registrate() {
     }
     
     function ValidateName(firstname) {
-        // Validar que el correo electrónico tenga el formato correcto
+        // Validar que el Nombre tenga el formato correcto
         const nameRegex = /^[a-zA-ZÀ-ÿ\s]{4,90}$/;
         return nameRegex.test(firstname);
       }
     
     function ValidateLastname(lastname) {
-        // Validar que el correo electrónico tenga el formato correcto
+        // Validar que el Apellido tenga el formato correcto
         const lastNameRegex = /^[a-zA-ZÀ-ÿ\s]{4,90}$/;
         return lastNameRegex.test(lastname);
       }
     
     function ValidatePassword(password) {
-        // Validar que el correo electrónico tenga el formato correcto
+        // Validar que la contraseña tenga el formato correcto
         const passwordRegex = /^.{6,24}$/;
         return passwordRegex.test(password);
       }
@@ -100,7 +106,7 @@ export default function Registrate() {
                     name="firstname"
                     value={data.firstname}
                     onChange={handleChange}
-                    script={ValidateName}
+                    onSubmit={ValidateName}
                     className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                     id="firstname"
                 />
@@ -112,7 +118,7 @@ export default function Registrate() {
                 name="lastname"
                 onChange={handleChange}
                 value={data.lastname}
-                script={ValidateLastname}
+                onSubmit={ValidateLastname}
                 className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 id="lastname"
             />
@@ -124,7 +130,7 @@ export default function Registrate() {
                 name="email"
                 onChange={handleChange}
                 value={data.email}   
-                script={ValidateEmail}
+                onSubmit={ValidateEmail}
                 className="h-11 col-span-2 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 id="email"
             />
@@ -136,7 +142,7 @@ export default function Registrate() {
                 name="password"
                 onChange={handleChange}
                 value={data.password}
-                script={ValidatePassword}
+                onSubmit={ValidatePassword}
                 
                 className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 id="password"
