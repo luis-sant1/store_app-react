@@ -4,6 +4,8 @@ import { useModal } from "../Modal/useModal"
 import Modal from "../Modal/Modal";
 import axios from "axios";
 
+import { Label, Select } from 'flowbite-react';
+
 export default function CreatePokemon(){
     const [error,setError]=useState('')
     const [isOpenAlert, openAlert, closeAlert] = useModal(false);
@@ -79,36 +81,31 @@ export default function CreatePokemon(){
             <div className="flex justify-center m-2 ...">
                 <h1 className="text-xl font-semibold text-black ...">CREA TU PRODUCTO</h1>
             </div>
-            <div className=" sm:w-96 cursor-pointer">
-                <div className="items-center justify-center cursor-pointer">
-                    <input 
-                    type="file" 
-                    name="imagen"
-                    onChange={handleImg}
-                    className="mt-4 mb-4 cursor-pointer w-62"
-                    />
-                </div>
-            </div>
+            
+            <label htmlFor="" id="name" className="pt-2 pl-1.5"><b>Nombre del Producto</b></label>
             <input
                 type="text"
                 placeholder="Nombre del Producto"
                 name="nombre"
                 onChange={handleChange}
                 value={data.nombre}
-                className="h-10 mb-4 bg-slate-100 rounded-lg ..."
+                className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
+                id="name"
             />
+            <label htmlFor="" id="description" className="pl-1.5"><b>Descripcion</b></label>
             <input
                 type="text"
                 placeholder="Descripcion..."
                 name="descripcion"
                 onChange={handleChange}
                 value={data.descripcion}   
-                className="h-10 col-span-2 mb-4 bg-slate-100 rounded-lg ..."
+                className="h-11 col-span-2 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
+                id="description"
             />
             <div className="ml-2 flex flex-basic">
-                <label className="m-2"> Categoria:</label>
-                <br />
-                <select onChange={(e)=>handleSelect(e)} name="categoria" className="cursor-pointer" value={data.categoria} >   
+                <label className="m-2 pl-1.5"><b>Categoria:</b></label>
+               
+                {/* <select onChange={(e)=>handleSelect(e)} name="categoria" className="cursor-pointer" value={data.categoria} >   
                     <option value="Ropa">Ropa</option>
                     <option value="Tecnologia">Tecnologia</option>
                     <option value="Accesorios">Accesorios</option>
@@ -118,8 +115,21 @@ export default function CreatePokemon(){
                     <option value="Libros">Libros</option>
                     <option value="Articulos_de_belleza">Articulos de belleza</option>
                     <option value="Arte">Arte</option>
-                </select>
+                </select> */}
+
+                <Select id="countries" onChange={(e)=>handleSelect(e)} name="categoria" className="cursor-pointer" required>
+                <option value="Ropa">Ropa</option>
+                    <option value="Tecnologia">Tecnologia</option>
+                    <option value="Accesorios">Accesorios</option>
+                    <option value="Suplementos">Suplementos</option>
+                    <option value="Herramientas">Herramientas</option>
+                    <option value="Articulos_del_hogar">Articulos del hogar</option>
+                    <option value="Libros">Libros</option>
+                    <option value="Articulos_de_belleza">Articulos de belleza</option>
+                    <option value="Arte">Arte</option>
+                </Select>
             </div>
+            <label htmlFor="" id="price" className="pt-2 pl-1.5"><b>Precio</b></label>
             <input
                 type="text"
                 placeholder="Precio"
@@ -127,16 +137,33 @@ export default function CreatePokemon(){
                 onChange={handleChange}
                 value={data.precio}
                 
-                className="h-10 mb-4 bg-slate-100 rounded-lg ..."
+                className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
+                id="price"
             />
+            <label htmlFor="" id="units" className="pl-1.5"><b>Unidades</b></label>
             <input
                 type="text"
                 placeholder="Unidades"
                 name="unidades"
                 onChange={handleChange}
                 value={data.unidades}
-                className="h-10 mb-4 bg-slate-100 rounded-lg ..."
+                className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
+                id="units"
             />
+
+            <label htmlFor="" id="img" className="pl-1.5"><b>Selecciona la imagen de tu producto</b></label>
+            <div className=" sm:w-96 cursor-pointer">
+                <div className="pl-1.5 items-center justify-center cursor-pointer">
+                    <input 
+                    type="file" 
+                    name="imagen"
+                    onChange={handleImg}
+                    className=" mt-4 mb-4 cursor-pointer w-62"
+                    id="img"
+                    />
+                </div>
+            </div>
+
             {error && <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center'>{error}</div>}
             <button type="submit" className="m-4 bg-green-50 h-10 rounded-full text-white font-semibold text-white-500 ...">
                 Crear
