@@ -1,11 +1,13 @@
 const express = require('express');
 const { upload } = require('../controllers/uploadController');
 const { getAll, postItem, putItem,   deleteItem  } = require('../controllers/controllers')
+const {authMidd } = require('../middleware/session')
+const {checkRol} = require('../middleware/rol')
 
 const router = express.Router()
 
 // ALL ITEMS
-router.get('/products', getAll)
+router.get('/products', authMidd, checkRol(["admin"]),  getAll) // PARA TESTEO SE ESTÁN USANDO LOS MIDDLEWARE DE AUTENTICACIÓN Y VERIFICACIÓN DE ROL.
 
 // CREATE AN ITEM
 router.post('/createProduct', upload.single('imagen'), postItem)
