@@ -19,7 +19,7 @@ export default function Registrate() {
     });
 
     const handleChange = ({ currentTarget: input }) => {
-        setData({ ...data, [input.fisrtname]: input.value });
+        setData({ ...data, [input.name]: input.value }); /// Aquí habías puesto input.firtsname y es input.name (name es un atributo de input.)
     };
 
     // Validacion  de los formularios
@@ -103,7 +103,7 @@ export default function Registrate() {
                 <input
                     type="text"
                     placeholder="Nombre"
-                    name="firstname"
+                    name="firstname" // esto de acá es name
                     value={data.firstname}
                     onChange={handleChange}
                     onSubmit={ValidateName}

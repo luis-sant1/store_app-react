@@ -7,7 +7,7 @@ const {checkRol} = require('../middleware/rol')
 const router = express.Router()
 
 // ALL ITEMS
-router.get('/products', authMidd, checkRol(["admin"]),  getAll) // PARA TESTEO SE ESTÁN USANDO LOS MIDDLEWARE DE AUTENTICACIÓN Y VERIFICACIÓN DE ROL.
+router.get('/products',  getAll) // PARA TESTEO SE ESTÁN USANDO LOS MIDDLEWARE DE AUTENTICACIÓN Y VERIFICACIÓN DE ROL.
 
 // CREATE AN ITEM
 router.post('/createProduct', upload.single('imagen'), postItem)
