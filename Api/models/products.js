@@ -24,7 +24,6 @@ const prSchema = new Schema({
       type: String,
       required: true
    },
-   // generacion = precio, habilidad = unidades
    categoria: {
       type: Array,
       default: [],
