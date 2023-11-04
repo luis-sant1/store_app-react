@@ -27,12 +27,8 @@ const validateRegister = [
             min: 6,
             max: 24
         }),
-    check("address")
-        .exists()
-        .notEmpty(),
+    check("address"),
     check("phone")
-        .exists()
-        .notEmpty()
         .isLength({
             max: 9
         }),
