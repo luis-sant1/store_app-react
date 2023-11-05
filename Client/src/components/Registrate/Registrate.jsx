@@ -195,6 +195,8 @@ import axios from "axios";
 import { Select } from 'flowbite-react';
 
 export default function Registrate() {
+
+    // estas constante y la primera funcion handlechage son literalmente las mismas que las de create poquemo, solo que adaptada a los datos del registro
     const [error, setError] = useState("");
     const [isOpenAlert, openAlert, closeAlert] = useModal(false);
     const [data, setData] = useState({
@@ -208,6 +210,8 @@ export default function Registrate() {
     const handleChange = ({ currentTarget: input }) => {
         setData({ ...data, [input.name]: input.value });
     };
+
+// esta es la fincion de validar el formulario
 
     const validateForm = () => {
         const { name, lastName, email, password, repeat } = data;
@@ -237,7 +241,7 @@ export default function Registrate() {
 
   
     
-    
+    // esta funcion tambiennes una copia de la de create pokemon y adaptada a los datos de el registro, si no me equivioco esta es la funcion que encia los datos a la base de datos
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -260,6 +264,8 @@ export default function Registrate() {
             }
         }
     }
+
+// estas son las funciones de los tipos de caracteries que aceptan los formularios 
 
     function ValidateEmail(email) {
               // Validar que el correo electrónico tenga el formato correcto
@@ -284,6 +290,9 @@ export default function Registrate() {
                 const passwordRegex = /^.{6,24}$/;
                 return passwordRegex.test(password);
               }
+
+            //   los datos de estan guardando en el value de los input con el data."el nombre de dato" al igual que como se hace en el create pokemon
+            // en resumen este codigo es una "copia" de como funciona el create pokemon
 
     return (
         <div className="flex justify-center m-10 w-98 ...">

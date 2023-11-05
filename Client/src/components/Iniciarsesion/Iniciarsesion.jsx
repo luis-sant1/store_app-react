@@ -45,7 +45,7 @@ export default function Iniciarsesion() {
             data.password !== "" && body.append('Contraseña', data.password);
 
             try {
-                const url = import.meta.env.VITE_FETCH_CREATE;
+                const url = import.meta.env.VITE_FETCH_LOGIN;
                 const { data: res } = await axios.post(url, body);
                 openAlert();
             } catch (error) {
