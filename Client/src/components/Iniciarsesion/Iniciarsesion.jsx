@@ -21,14 +21,20 @@ export default function Iniciarsesion() {
     };
 
     const validateForm = () => {
-        if (
-            data.email === "" ||
-            data.password === "" 
-            
-        ) {
+        const { name, lastName, email, password, repeat } = data;
+    
+        if (!ValidateEmail(email)) {
+            setError("Por favor, ingrese un correo electrónico válido");
+            return false;
+        } else if (!ValidatePassword(password)) {
+            setError("Por favor, ingrese una contraseña válida (de 6 a 24 dígitos)");
+            return false;
+        } 
+        else if ( email === "" || password === "") {
             setError("Todos los campos son obligatorios.");
             return false;
-        } return true;
+        }
+        return true;
     };
 
     const handleSubmit = async (e) => {
@@ -80,7 +86,6 @@ export default function Iniciarsesion() {
                 name="email"
                 onChange={handleChange}
                 value={data.email}   
-                onSubmit={ValidateEmail}
                 className="h-11 col-span-2 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 id="email"
             />
@@ -91,13 +96,10 @@ export default function Iniciarsesion() {
                 placeholder="Contraseña"
                 name="password"
                 onChange={handleChange}
-                value={data.password}
-                onSubmit={ValidatePassword}
-                
+                value={data.password}              
                 className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 id="password"
             />
-                {/* Agrega campos similares para los otros campos del formulario (apellido, correo, contraseña, repetir contraseña) */}
 
                 {error && <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center'>{error}</div>}
                 <button type="submit" className="m-4 bg-green-50 h-10 rounded-full text-white font-semibold text-white-500 ...">
