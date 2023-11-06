@@ -13,6 +13,9 @@ require('./db/db');
 const app = express();
 
 //Parse to JSON
+app.use(express.urlencoded({
+    extended: true
+  }));
 app.use(express.json()); 
 
 // FIX CORS
@@ -21,5 +24,6 @@ app.use(cors())
 // Routes
 app.use("/", routes);
 app.use('/user', userRoutes)
+
 
 module.exports = app;

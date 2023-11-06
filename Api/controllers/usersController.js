@@ -1,13 +1,13 @@
-const UserSchema = require('../models/users');
+const  UserSchema  = require('../models/users');
 const { matchedData } = require('express-validator')
 const { encrypt, compare } = require('../utils/handlePassword')
 const { tokenSign } = require('../utils/handleJwt')
 
 const createUser = async (req, res) => {
     try {
-        req = matchedData(req)                                  // DATA Validada con express-validator.
-        const passwordHash = await encrypt(req.password)        // Password encriptada
-        const body = { ...req, password: passwordHash }         // Password reemplaza en copia de req
+        //req = matchedData(req)                                  // DATA Validada con express-validator.
+        const passwordHash = await encrypt(req.body.password)        // Password encriptada
+        const body = { ...req.body, password: passwordHash }         // Password reemplaza en copia de req
         const existingUser = await UserSchema.findOne({
             email: body.email
         })
@@ -15,15 +15,26 @@ const createUser = async (req, res) => {
             return res.status(400).json({ error: 'Ya existe un usuario con ese email.'})
         }
 
-        const newUser = await UserSchema.create(body)           // Crear
+        const {name, lastName, email, password, address, phone } = body
+        const newUser = new UserSchema({
+            name,
+            lastName,
+            email,
+            password,
+            address, 
+            phone
+        })           // Crear
+        const userSaved = await newUser.save()
         newUser.set('password', undefined, { strict: false })   // Setea el password, ya que create no admite filtrar desde el model.
-
+        console.log({ body: JSON.stringify(req.body) });
+        console.log({ document: newUser.toJSON() });
         const data = {
             token: await tokenSign(newUser),                    // Generar un token con la data del user.
-            user: newUser                                       // User
+            user: userSaved                                       // User
         }
         console.log(await tokenSign(newUser))
         res.json({ user: data });
+        // res.send("registrando")
     } catch (error) {
         console.log(error)
         res.status(500).json({ error: "hubo un error al craear usuario" })

@@ -10,7 +10,7 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Search } from './components/Search/Search'
-
+import { AuthProvider } from './components/Context/AuthContext';
 import SingUp from './components/Registrate/Registrate';
 import { Dropdown } from 'flowbite-react' 
 import Registrate from './components/Registrate/Registrate';
@@ -23,7 +23,6 @@ function App() {
   const[productos, setProductos] = useState([]);
   const[tablaProductos, setTablaProductos] = useState([]);
   const[busqueda, setBusqueda] = useState("");
-
   const peticionesGet=async()=>{
     await axios.get("http://localhost:3000/products") //https://jsonplaceholder.typicode.com/users URL de API externa (pruebas)
     .then(response =>{
@@ -70,7 +69,7 @@ function App() {
     }else if(page === 'search'){
       return <Search  productos = {productos}/>
     }else if(page==='Registrate') {
-      return <Registrate/>
+      return <Registrate page = {page} setPage = {setPage} />
     }else if(page==='Iniciar') {
       return <Iniciarsesion/>
     }
@@ -89,6 +88,9 @@ function App() {
   }
 
   return (
+    // Contexto
+    <AuthProvider>                              
+      
     <div className='w-full'>
       <header className="flex bg-white h-14 w-full">
         <button onClick={toPage("home")}><img src={logo} alt="img_not_fund" className='ml-2 w-28 h-auto' /></button>
@@ -109,6 +111,8 @@ function App() {
       
       {getContent()}
     </div>
+  
+    </AuthProvider>
   )
 }
 

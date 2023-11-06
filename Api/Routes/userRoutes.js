@@ -4,7 +4,7 @@ const {createUser, loginUser, updateUser, getAllUsers, deleteUser  } = require('
 const { validateRegister , validateLogin} = require('../validators/users')
 
 router
-.post('/register', validateRegister , createUser )
+.post('/register',  createUser )
 .post('/login', validateLogin, loginUser )
 
 .get('/all', getAllUsers )
