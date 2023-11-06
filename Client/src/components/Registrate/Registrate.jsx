@@ -10,10 +10,10 @@ export default function Registrate({page, setPage}) {
     const [repeat, setRepeat] = useState(
         ""
     )
-    const { register, handleSubmit } = useForm();
-    const {signup, isAuthenticated, formState: {
+    const { register, handleSubmit, formState: {
         errors                                          // EXtrayendo errores del formulario
-    }} = useAuth();                                 // TRAEME signup del context.
+    } } = useForm();
+    const {signup, isAuthenticated } = useAuth();                                 // TRAEME signup del context.
     useEffect(() => {
         if(isAuthenticated) setPage("home")                                                                   // Redireccionamos al usuario si isAuthenticated = true
                                                             
@@ -41,6 +41,11 @@ export default function Registrate({page, setPage}) {
                     {...register('name', { required: true, minLength: 4, maxLength: 90, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/ })}
                     className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 />
+                {
+                    errors.name && <p>
+                        Nombre requerido. Minimo 4 caracteres.
+                    </p>
+                }
 
                 <label htmlFor="lastName" className="pl-1.5"><b>Apellido</b></label>
                 <input
