@@ -15,6 +15,9 @@ import SingUp from './components/Registrate/Registrate';
 import { Dropdown } from 'flowbite-react' 
 import Registrate from './components/Registrate/Registrate';
 import Iniciarsesion from './components/Iniciarsesion/Iniciarsesion';
+import UpdateUsers from './components/UpdateUsers/UpdateUsers'
+import DataUsers from './components/DataUsers/DataUsers';
+import UsersLists from './components/UsersList/UsersList';
 
 
 
@@ -72,6 +75,10 @@ function App() {
       return <Registrate page = {page} setPage = {setPage} />
     }else if(page==='Iniciar') {
       return <Iniciarsesion/>
+    }else if(page=== 'UpdateUsers'){
+      return <UpdateUsers/>
+    }else if(page=== 'UsersList'){
+      return <UsersLists/>
     }
   }
   const toPage = page=>e=>{ // Función que cambia de vista. 
@@ -106,6 +113,8 @@ function App() {
             <Dropdown.Item><button onClick={toPage("home")} className=''>Inicio</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("Registrate")} className=''>Registrate</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("Iniciar")} className=''>Iniciar Sesión</button></Dropdown.Item>
+            <Dropdown.Item><button onClick={toPage("UpdateUsers")} className=''>Editar Ususario</button></Dropdown.Item>
+            <Dropdown.Item><button onClick={toPage("UsersList")} className=''>Lista de Usuarios</button></Dropdown.Item>
           </Dropdown>
         </div>
       </header>
