@@ -5,15 +5,15 @@ import { useForm } from 'react-hook-form'
 import { useAuth } from "../Context/AuthContext";
 
 export default function Registrate({page, setPage}) {
-    const [error, setError] = useState("");    
+    const [error, setError] = useState("");                                 
     const [isOpenAlert, openAlert, closeAlert] = useModal(false);
     const [repeat, setRepeat] = useState(
         ""
     )
-    const { register, handleSubmit } = useForm();
-    const {signup, isAuthenticated, formState: {
+    const { register, handleSubmit, formState: {
         errors                                          // EXtrayendo errores del formulario
-    }} = useAuth();                                 // TRAEME signup del context.
+    }} = useForm();
+    const {signup, isAuthenticated, e} = useAuth();                                 // TRAEME signup del context.
     useEffect(() => {
         if(isAuthenticated) setPage("home")                                                                   // Redireccionamos al usuario si isAuthenticated = true
                                                             
@@ -25,10 +25,13 @@ export default function Registrate({page, setPage}) {
                 <h2>PERFIL CREADO CORRECTAMENTE</h2>
             </Modal>
             <form className="flex flex-col min-w-[70%] p-2 bg-white rounded-lg ..." onSubmit={handleSubmit(async (values) => {
-                //   if(repeat != user.password){
-                //     return setError("Contraseñas no coinciden")
-                // }
-                signup(values);                                         // EJECUTA signUp desde los values de los inputs.
+                
+                signup(values)            // EJECUTA signUp desde los values de los inputs.
+                console.log(e)
+                if(values.password != repeat){
+                    return setError("Contraseñas no coinciden")
+                }
+                 
             })}>
                 <div className="flex justify-center m-2 ...">
                     <h1 className="text-xl font-semibold text-black ...">CREA TU PERFIL</h1>
@@ -41,7 +44,13 @@ export default function Registrate({page, setPage}) {
                     {...register('name', { required: true, minLength: 4, maxLength: 90, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/ })}
                     className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 />
-
+                {
+                    errors.name && (
+                        <p className="text-red-500 text-xs">
+                            Nombre requerido. Mínimo 4 caracteres.
+                        </p>
+                    )
+                }
                 <label htmlFor="lastName" className="pl-1.5"><b>Apellido</b></label>
                 <input
                     type="text"
@@ -49,6 +58,13 @@ export default function Registrate({page, setPage}) {
                     {...register('lastName', { required: true, minLength: 4, maxLength: 90, pattern: /^[a-zA-ZÀ-ÿ\s]{4,90}$/ })}
                     className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 />
+                 {
+                    errors.lastName && (
+                        <p className="text-red-500 text-xs">
+                            Apellido requerido. Mínimo 4 caracteres.
+                        </p>
+                    )
+                }
 
                 <label htmlFor="email" className="pl-1.5"><b>Correo Electrónico</b></label>
                 <input
@@ -57,6 +73,13 @@ export default function Registrate({page, setPage}) {
                     {...register('email', { required: true, minLength: 4, maxLength: 90, pattern:  /^\S+@\S+\.\S+$/ })}
                     className="h-11 col-span-2 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 />
+                 {
+                    errors.email && (
+                        <p className="text-red-500 text-xs">
+                            Correo inválido. {error}
+                        </p>
+                    )
+                }
 
                 <label htmlFor="password" className="pl-1.5"><b>Contraseña</b></label>
                 <input
@@ -65,7 +88,13 @@ export default function Registrate({page, setPage}) {
                     {...register('password', { required: true, minLength: 4, maxLength: 90, pattern: /^.{6,24}$/ })}
                     className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 />
-
+                 {
+                    errors.password && (
+                        <p className="text-red-500 text-xs">
+                            Contraseña demasiado corta.
+                        </p>
+                    )
+                }
                 <label htmlFor="repeat" className="pl-1.5"><b>Repetir contraseña</b></label>
                 <input
                     type="password"
