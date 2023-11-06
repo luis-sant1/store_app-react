@@ -94,7 +94,7 @@ export default function Registrate() {
             <Modal isOpen={isOpenAlert} onClose={closeAlert}>
                 <h2>PERFIL CREADO CORRECTAMENTE</h2>
             </Modal>
-            <form className="flex flex-col min-w-[70%] p-2 bg-white rounded-lg ..." onSubmit={handleSubmit}>
+            <form className="flex flex-col p-2 bg-white rounded-lg  min-w-[100%] md:min-w-[70%] ..." onSubmit={handleSubmit}>
                 <div className="flex justify-center m-2 ...">
                     <h1 className="text-xl font-semibold text-black ...">CREA TU PERFIL</h1>
                 </div>

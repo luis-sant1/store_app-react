@@ -18,7 +18,7 @@ import Iniciarsesion from './components/Iniciarsesion/Iniciarsesion';
 
 
 
-function App() {
+export function App() {
 
   const[productos, setProductos] = useState([]);
   const[tablaProductos, setTablaProductos] = useState([]);
