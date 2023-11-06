@@ -9,10 +9,12 @@
     display: none;
     justify-content: center;
     align-items: center;
+    
 }
 
 .modal.is-open{
     display: flex;
+   
 }
 
 .modal-container{
@@ -28,6 +30,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    border-radius: 7%;
 }
 .modal-close{
     position: absolute;

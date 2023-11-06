@@ -16,13 +16,13 @@ export default function CardDetail(props){
         }
       }
     return(
-        <div className="h-98" >
+        <div className="h-98 " >
                 <Modal isOpen={isOpenAlert} onClose={closeAlert}>
                     <h2>PRODUCTO ELIMINADO CORRECTAMENTE</h2>
                 </Modal>    
             {props.dataDetail.imagen?
-            <div className="inf">
-                <div className="max-w-98 max-h-98 bg-secondary flex flex-col items-center justify-center m-8">
+            <div className="inf ">
+                <div className="max-w-98 max-h-98 bg-secondary flex flex-col items-center justify-center m-8 ">
                     <div>
                         <img src={props.dataDetail.imagen.secure_url} alt="img_not_fund" className="h-40"/>
                     </div>
@@ -37,7 +37,7 @@ export default function CardDetail(props){
                             <span className="ml-auto mr-auto">Disponible: {props.dataDetail.unidades}</span>
                             <span className="sm:ml-5 pl-5">Categoria: {props.dataDetail.categoria[0].split('_').join(" ")}</span> {/* ARREGLADO MAL RENDERIZADO DE LAS CATEGORIAS CON ESPACIO*/}
                     </div>
-                    <div className='grid grid-cols-2 m-4 gap-20'>
+                    <div className='grid grid-cols-2 m-4 gap-20 mt-9'>
                         <button className='w-full rounded-lg shadow-lg bg-red-200 m-2 p-1 text-sm font-medium' onClick={(e)=>handleDelete()}>Eliminar</button>
                         <button className='w-full rounded-lg shadow-lg bg-violet-100 m-2 p-1 text-sm font-medium' onClick={funUpDate("update",props.dataDetail._id, props.dataDetail )} >Actualizar</button>
                     </div>

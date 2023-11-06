@@ -7,6 +7,7 @@ import Modal from "../Modal/Modal";
 import axios from "axios";
 import { Select } from 'flowbite-react';
 
+<<<<<<< Updated upstream
 export default function Registrate() {
     const [error, setError] = useState("");
     const [isOpenAlert, openAlert, closeAlert] = useModal(false);
@@ -88,6 +89,22 @@ export default function Registrate() {
         const passwordRegex = /^.{6,24}$/;
         return passwordRegex.test(password);
       }
+=======
+export default function Registrate({ page, setPage }) {
+    const [error, setError] = useState("");
+    const [isOpenAlert, openAlert, closeAlert] = useModal(false);
+    const [repeat, setRepeat] = useState(
+        ""
+    )
+    const { register, handleSubmit, formState: {
+        errors                                                                     // EXtrayendo errores del formulario
+    } } = useForm();
+    const { signup, isAuthenticated } = useAuth();                                 // TRAEME signup del context.
+    useEffect(() => {
+        if (isAuthenticated) setPage("home")                                                                   // Redireccionamos al usuario si isAuthenticated = true
+
+    }, [isAuthenticated])
+>>>>>>> Stashed changes
 
     return (
         <div className="flex justify-center m-10 w-98 ...">
@@ -111,6 +128,7 @@ export default function Registrate() {
                     id="firstname"
                 />
 
+<<<<<<< Updated upstream
             <label htmlFor="" id="lastname" className=" pl-1.5"><b>Apellido</b></label>
             <input
                 type="text"
@@ -122,6 +140,15 @@ export default function Registrate() {
                 className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 id="lastname"
             />
+=======
+                <label htmlFor="email" className="pl-1.5"><b>Correo Electrónico</b></label>
+                <input
+                    type="text"
+                    placeholder="Ejemplo@gmail.com"
+                    {...register('email', { required: true, minLength: 4, maxLength: 90, pattern: /^\S+@\S+\.\S+$/ })}
+                    className="h-11 col-span-2 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
+                />
+>>>>>>> Stashed changes
 
             <label htmlFor="" id="email" className="pl-1.5"><b>Correo Electronico</b></label>
             <input
