@@ -1,51 +1,17 @@
 import React, { useEffect, useState } from "react";
 import DataUsers from "../DataUsers/DataUsers";
 import { useFetch } from "../customHooks/useFetch";
+import UpdateUsers from '../UpdateUsers/UpdateUsers.jsx'
 
 export default function UsersLists() {
   const { data, loading, error, total } = useFetch(import.meta.env.VITE_FETCH_USERS);
   const [productsPerPage, setProductsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isEditing, setIsEditing] = useState(false);
 
 
   const lastIndex = currentPage * productsPerPage;
   const firstIndex = lastIndex - productsPerPage;
-
-  const handleEdit = (_id) => {
-
-    fetch(`${import.meta.env.VITE_FETCH_EDIT_USERS}/${_id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(users.name, users.lastname, phone),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-
-        console.log("Usuario editado con éxito:", data);
-      })
-      .catch((error) => {
-
-        console.error("Error al editar el usuario:", error);
-      });
-  };
-
-  const handleDelete = (userId) => {
-
-    fetch(`${import.meta.env.VITE_FETCH_DELETE_USERS}/${userId}`, {
-      method: "DELETE",
-    })
-      .then((response) => response.json())
-      .then((data) => {
-
-        console.log("Usuario eliminado con éxito:", data);
-      })
-      .catch((error) => {
-  
-        console.error("Error al eliminar el usuario:", error);
-      });
-  };
 
   return (
 <div className="w-full h-full pt-10">
@@ -59,9 +25,8 @@ export default function UsersLists() {
           <tr>
             <th className="px-4 py-2">ID</th>
             <th className="px-4 py-2">Nombre</th>
+            <th className="px-4 py-2">Apellido</th>
             <th className="px-4 py-2">Correo</th>
-            <th className="px-4 py-2">Direccion</th>
-            <th className="px-4 py-2">Telefono</th>
             <th className="px-4 py-2">Eliminar</th>
             <th className="px-4 py-2">Editar</th>
           </tr>
@@ -69,21 +34,22 @@ export default function UsersLists() {
         <tbody>
           {data.users &&
             data.users.map((user) => (
-              <tr key={user.id}>
+              <tr key={user._id}>
                 <td className="border px-4 py-2">{user._id}</td>
                 <td className="border px-4 py-2">{user.name}</td>
+                <td className="border px-4 py-2">{user.lastName}</td>
                 <td className="border px-4 py-2">{user.email}</td>
-                <td className="border px-4 py-2">{user.address}</td>
-                <td className="border px-4 py-2">{user.phone}</td>
                 <td className="border px-4 py-2">
-                  <button onClick={() => handleDelete(user.id)} className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded">
+                    <td>{console.log(data.users)}</td>
+                  <button onClick={() => seEditing(true)} className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded">
                     Eliminar
                   </button>
                 </td>
                 <td className="border px-4 py-2">
-                  <button onClick={() => handleEdit(user.id)} className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded">
+                  <button onClick={() => setIsEditing(true)} className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded">
                     Editar
                   </button>
+                  {isEditing && <UpdateUsers />}
                 </td>
               </tr>
             ))}
