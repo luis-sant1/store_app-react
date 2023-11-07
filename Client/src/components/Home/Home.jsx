@@ -10,16 +10,14 @@ import { Error } from "../extraComponents/Error";
 import { Pagination } from "../extraComponents/Pagination";
 
 export default function Home(props) {
-    //const url = import.meta.env.VITE_FETCH_ALL
     const funUp = props // TRAE FUNCiÓN
-
+    
     //ESTADOS
     const [isOpenAlert, openAlert, closeAlert] = useModal(false); // Estado de la venta ver deetalles
     const [dataDetail, setDataDetail] = useState({}) // Data de la ventana datails.
     const [products, setProducts] = useState([]); // Arreglo de productos. -Probablmente no lo use x
-    const [productsPerPage, setProductsPerPage] = useState(6) // Productos que se muestran por página
+    const [productsPerPage, setProductsPerPage] = useState(8) // Productos que se muestran por página
     const [currentPage, setCurrentPage] = useState(1) // Página actual en la que nos encontramos.
-
 
 
     const { data, loading, error, total } = useFetch(import.meta.env.VITE_FETCH_ALL); // uso del custom hook useFetch para traer la data.

@@ -39,7 +39,7 @@ export default function CardDetail(props){
                     </div>
                     <div className='grid grid-cols-2 m-4 gap-20'>
                         <button className='w-full rounded-lg shadow-lg bg-red-200 m-2 p-1 text-sm font-medium' onClick={(e)=>handleDelete()}>Eliminar</button>
-                        <button className='w-full rounded-lg shadow-lg bg-violet-100 m-2 p-1 text-sm font-medium' onClick={funUpDate("update",props.dataDetail._id, props.dataDetail )} >Actualizar</button>
+                        <button className='w-full rounded-lg shadow-lg bg-violet-100 m-2 p-1 text-sm font-medium' onClick={funUpDate("update", props.dataDetail._id, props.dataDetail )} >Actualizar</button>
                     </div>
                 </div>
             </div>:

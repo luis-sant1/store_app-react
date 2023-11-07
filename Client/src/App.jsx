@@ -67,7 +67,7 @@ function App() {
     }else if(page==='update'){
       return <UpdatePokemon idU={id} content={content}/>
     }else if(page === 'search'){
-      return <Search  productos = {productos}/>
+      return <Search  productos = {productos} toPageUp={toPageUp} />
     }else if(page==='Registrate') {
       return <Registrate page = {page} setPage = {setPage} />
     }else if(page==='Iniciar') {
@@ -79,6 +79,7 @@ function App() {
     window.history.pushState(null,"Create",`/${page}`)
     setPage(page)
   }
+
   const toPageUp=(page, id, data)=>e=>{ // Función que cambia de vista (editar)
     e.preventDefault()
     window.history.pushState(null,"Create",`/${page}/${id}`) // Crea una pagina con el estado page y el id. 

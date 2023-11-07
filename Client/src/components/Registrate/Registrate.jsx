@@ -13,7 +13,8 @@ export default function Registrate({page, setPage}) {
     const { register, handleSubmit, formState: {
         errors                                          // EXtrayendo errores del formulario
     }} = useForm();
-    const {signup, isAuthenticated, e} = useAuth();                                 // TRAEME signup del context.
+    const {signup, isAuthenticated } = useAuth();                                 // TRAEME signup del context.
+
     useEffect(() => {
         if(isAuthenticated) setPage("home")                                                                   // Redireccionamos al usuario si isAuthenticated = true
                                                             
@@ -51,6 +52,7 @@ export default function Registrate({page, setPage}) {
                         </p>
                     )
                 }
+
                 <label htmlFor="lastName" className="pl-1.5"><b>Apellido</b></label>
                 <input
                     type="text"
