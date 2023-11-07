@@ -1,5 +1,6 @@
 
 import React from "react";
+import CardPokemons from '../CardPokemons/CardPokemons'
 
 export default function FavProducs({ favoritos, data }) {
   // Verificar si data es un array
