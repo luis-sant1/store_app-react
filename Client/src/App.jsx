@@ -19,10 +19,14 @@ import UpdateUsers from './components/UpdateUsers/UpdateUsers'
 import DataUsers from './components/DataUsers/DataUsers';
 import UsersLists from './components/UsersList/UsersList';
 
+import FavProducs from './components/FavProducs/FavProducs'
+
 
 
 
 function App() {
+
+  
 
   const[productos, setProductos] = useState([]);
   const[tablaProductos, setTablaProductos] = useState([]);
@@ -82,6 +86,8 @@ function App() {
       return <UsersLists/>
     }else if(page=== 'DataUsers'){
       return <DataUsers page = {page} setPage = {setPage}/>
+    }else if(page=== 'FavProducs') {
+      return <FavProducs/>
     }
   }
   const toPage = page=>e=>{ // Función que cambia de vista. 
@@ -118,6 +124,7 @@ function App() {
             <Dropdown.Item><button onClick={toPage("Iniciar")} className=''>Iniciar Sesión</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("UpdateUsers")} className=''>Editar Ususario</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("UsersList")} className=''>Lista de Usuarios</button></Dropdown.Item>
+            <Dropdown.Item><button onClick={toPage("FavProducs")} className=''>Favorito</button></Dropdown.Item>
           </Dropdown>
         </div>
       </header>
