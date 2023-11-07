@@ -69,7 +69,7 @@ function App() {
     }else if(page === 'search'){
       return <Search  productos = {productos} toPageUp={toPageUp} />
     }else if(page==='Registrate') {
-      return <Registrate page = {page} setPage = {setPage} />
+      return <Registrate page = {page} setPage = {setPage} toPage = {toPage} />
     }else if(page==='Iniciar') {
       return <Iniciarsesion/>
     }

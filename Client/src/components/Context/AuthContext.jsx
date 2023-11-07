@@ -14,7 +14,7 @@ export const useAuth = () => {                                         // AHORA 
 }
 
 export const AuthProvider = ({ children }) => {         
-    const [e, setE] = useState ("")                  // Por acá el resto de componentes consumiran los cambios que ocurran en el context.
+    const [error, setError] = useState([]);                  // Por acá el resto de componentes consumiran los cambios que ocurran en el context.
     const [user, setUser] = useState(null)                             // User que se está compartiendo
     const [isAuthenticated, setIsAuthenticated] = useState(false)      // Variable para saber si está autenticado el usuario
     const signup = async (user) => {
@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
             setIsAuthenticated(true);
         } catch (error) {
           console.log(error)
-          setE(error.response.data.error)
+          setError(error.response.data.error)
         }
 
     }
@@ -34,7 +34,8 @@ export const AuthProvider = ({ children }) => {
         <AuthContext.Provider value={{
             signup,                                                    // Por acá se pasa el objeto que se quiere compartir (user) 
             user,
-            isAuthenticated                                             // Comprobamos con un true o un false
+            isAuthenticated,                                             // Comprobamos con un true o un false
+            error
         }}>
             {children}
         </AuthContext.Provider>

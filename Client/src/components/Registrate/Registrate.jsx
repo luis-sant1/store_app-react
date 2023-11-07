@@ -4,19 +4,21 @@ import Modal from "../Modal/Modal";
 import { useForm } from 'react-hook-form'
 import { useAuth } from "../Context/AuthContext";
 
-export default function Registrate({page, setPage}) {
-    const [error, setError] = useState("");                                 
+export default function Registrate({toPage, setPage, page}) {
     const [isOpenAlert, openAlert, closeAlert] = useModal(false);
     const [repeat, setRepeat] = useState(
         ""
     )
     const { register, handleSubmit, formState: {
-        errors                                          // EXtrayendo errores del formulario
+        errors                                              // EXtrayendo errores del formulario
     }} = useForm();
-    const {signup, isAuthenticated } = useAuth();                                 // TRAEME signup del context.
+    const {signup, isAuthenticated, error } = useAuth();    // TRAEME signup del context.
 
     useEffect(() => {
-        if(isAuthenticated) setPage("home")                                                                   // Redireccionamos al usuario si isAuthenticated = true
+        if(isAuthenticated) {
+            setPage("home")
+            toPage()
+        }                                                            // Redireccionamos al usuario si isAuthenticated = true
                                                             
     }, [isAuthenticated])    
     
@@ -26,9 +28,9 @@ export default function Registrate({page, setPage}) {
                 <h2>PERFIL CREADO CORRECTAMENTE</h2>
             </Modal>
             <form className="flex flex-col min-w-[70%] p-2 bg-white rounded-lg ..." onSubmit={handleSubmit(async (values) => {
-                
+            
+                console.log("ejecutando to page") 
                 signup(values)            // EJECUTA signUp desde los values de los inputs.
-                console.log(e)
                 if(values.password != repeat){
                     return setError("Contraseñas no coinciden")
                 }
@@ -78,7 +80,7 @@ export default function Registrate({page, setPage}) {
                  {
                     errors.email && (
                         <p className="text-red-500 text-xs">
-                            Correo inválido. {error}
+                            Correo inválido.
                         </p>
                     )
                 }
@@ -107,7 +109,9 @@ export default function Registrate({page, setPage}) {
                     className="h-11 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 />
 
-                {error && <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center'>{error}</div>}
+                {error.map((error, i) => {
+                    <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center'>{error}</div>
+                }) }
                 <button type="submit" className="m-4 bg-green-50 h-10 rounded-full text-white font-semibold text-white-500 ...">
                     Crear Perfil
                 </button>

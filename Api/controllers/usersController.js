@@ -12,7 +12,7 @@ const createUser = async (req, res) => {
             email: body.email
         })
         if(existingUser){
-            return res.status(400).json({ error: 'Ya existe un usuario con ese email.'})
+            return res.status(400).json({ error: ['Ya existe un usuario con ese email.']})
         }
 
         const {name, lastName, email, password, address, phone } = body
@@ -37,7 +37,7 @@ const createUser = async (req, res) => {
         // res.send("registrando")
     } catch (error) {
         console.log(error)
-        res.status(500).json({ error: "hubo un error al craear usuario" })
+        res.status(500).json({ error:[ "hubo un error al craear usuario" ]})
     }
 }
 
