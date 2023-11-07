@@ -21,6 +21,7 @@ import UsersLists from './components/UsersList/UsersList';
 
 
 
+
 function App() {
 
   const[productos, setProductos] = useState([]);
@@ -79,6 +80,8 @@ function App() {
       return <UpdateUsers/>
     }else if(page=== 'UsersList'){
       return <UsersLists/>
+    }else if(page=== 'DataUsers'){
+      return <DataUsers page = {page} setPage = {setPage}/>
     }
   }
   const toPage = page=>e=>{ // Función que cambia de vista. 
