@@ -24,10 +24,10 @@ export default function UsersLists() {
                     <span>Editar</span>
                 </div>
                 <div>
-                    {data.user?.map((user) => (
-                        <DataUsers key={data.name} data={data.user} />
+                    {data.users?.map((users) => (
+                        <DataUsers key={users.name} data={users} />
                     )).slice(firstIndex, lastIndex)}
-                    {console.log(data.user)}
+                    {console.log(data.users)}
 
                 </div>
             </div>
