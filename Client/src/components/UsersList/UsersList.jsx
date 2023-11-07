@@ -7,17 +7,18 @@ export default function UsersLists() {
   const [productsPerPage, setProductsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
 
+
   const lastIndex = currentPage * productsPerPage;
   const firstIndex = lastIndex - productsPerPage;
 
-  const handleEdit = (userId) => {
+  const handleEdit = (_id) => {
 
-    fetch(`${import.meta.env.VITE_FETCH_EDIT_USERS}/${userId}`, {
+    fetch(`${import.meta.env.VITE_FETCH_EDIT_USERS}/${_id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(/* los datos del usuario que deseas editar */),
+      body: JSON.stringify(users.name, users.lastname, phone),
     })
       .then((response) => response.json())
       .then((data) => {

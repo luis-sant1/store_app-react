@@ -50,6 +50,7 @@ function App() {
     var resultadosBusqueda = tablaProductos.filter((elemento)=>{
       if(elemento.nombre.toString().toLowerCase().includes(ParamBusqueda.toLowerCase())
       || elemento.precio.toString().toLowerCase().includes(ParamBusqueda.toLowerCase())
+      || elemento.categoria.toString().toLowerCase().includes(ParamBusqueda.toLowerCase())
     ){
       return elemento;
     }
