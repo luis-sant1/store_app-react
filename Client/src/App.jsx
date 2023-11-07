@@ -71,7 +71,7 @@ function App() {
     }else if(page==='Registrate') {
       return <Registrate page = {page} setPage = {setPage} toPage = {toPage} />
     }else if(page==='Iniciar') {
-      return <Iniciarsesion/>
+      return <Iniciarsesion  setPage = {setPage} toPage = {toPage}/>
     }
   }
   const toPage = page=>e=>{ // Función que cambia de vista. 
