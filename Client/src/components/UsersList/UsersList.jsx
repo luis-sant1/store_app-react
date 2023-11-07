@@ -16,20 +16,38 @@ export default function UsersLists() {
                 <div className="flex justify-center m-2 pb-5 ...">
                     <h1 className="text-xl font-semibold text-black ...">LISTA DE USUARIOS</h1>
                 </div>
-                <div className="grid grid-cols-5 pb-6 justify-items-center">
-                    <span>Nombre</span>
-                    <span>Apellido</span>
-                    <span>Email</span>
-                    <span>Eliminar</span>
-                    <span>Editar</span>
-                </div>
-                <div>
-                    {data.users?.map((users) => (
-                        <DataUsers key={users.name} data={users} />
-                    )).slice(firstIndex, lastIndex)}
-                    {console.log(data.users)}
+                <div className="table-responsive">
+       <table className="table table-sm table-bordered">
+         <thead>
+           <tr>
+             <th>ID</th>
+             <th>Nombre</th>
+             <th>Correo</th>
+             <th>Direccion</th>
+             <th>Telefono</th>
+             <th>Eliminar</th>
+             <th>Editar</th>
+           </tr>
+         </thead>
 
-                </div>
+         <tbody>
+           {data.users && 
+           data.users.map((users)=>(
+             <tr key={users.id}>
+               <td>{users._id}</td>
+               <td>{users.name}</td>
+               <td>{users.email}</td>
+               <td>{users.address}</td>
+               <td>{users.phone}</td>
+
+             </tr>
+           ))},{console.log(data.users)}
+         </tbody>
+
+       </table>
+
+     </div>
+           
             </div>
         </div>
     );
