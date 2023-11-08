@@ -1,6 +1,6 @@
 const express = require('express');
 const { upload } = require('../controllers/uploadController');
-const { getAll, postItem, putItem,   deleteItem  } = require('../controllers/controllers')
+const { getAll, postItem, putItem, deleteItem  } = require('../controllers/controllers')
 const {authMidd } = require('../middleware/session')
 const {checkRol} = require('../middleware/rol')
 
@@ -18,4 +18,4 @@ router.put('/updateProduct/:_id', upload.single('imagen'), putItem)
 // DELETE AN ITEM
 router.delete('/deleteProduct/:_id', deleteItem)
 
-module.exports = router
+module.exports = router;

@@ -24,8 +24,6 @@ export default function DataUsers({props}){
             <span>Email:</span>
             <button className='w-16 rounded-lg shadow-lg bg-red-200 m-2 p-1 text-sm font-medium' onClick={(e)=>handleDelete()}>Eliminar</button>
             <button className='w-16 rounded-lg shadow-lg bg-green-200 m-2 p-1 text-sm font-medium' >Editar</button>
-
-            
         </div>
     )
 }

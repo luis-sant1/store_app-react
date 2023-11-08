@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios from "../apiConfig/axios";
 import { useModal } from "../Modal/useModal"
 import Modal from "../Modal/Modal";
 export default function CardDetail(props){
@@ -11,6 +11,9 @@ export default function CardDetail(props){
           const {data:res}=await axios.delete(import.meta.env.VITE_FETCH_DELETE + props.dataDetail._id) // Hacemos delete obtenindo el id de las props.
           console.log(res)
           openAlert()
+          setTimeout(() => {
+            window.location.href = '/home';
+          }, 2000);
         } catch (error) {
           console.log(error)
         }

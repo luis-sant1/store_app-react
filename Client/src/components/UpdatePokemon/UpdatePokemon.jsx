@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../apiConfig/axios";
 import { useModal } from "../Modal/useModal"
 import Modal from "../Modal/Modal";
 
@@ -36,6 +36,7 @@ export default function UpdatePokemon(idU){
 
 
     const handleSubmit = async (e) => {
+        e.preventDefault()
         if (data.imagen===null) {
             e.preventDefault()
             setError("Por favor ingresa la imagen del Producto")
@@ -59,6 +60,9 @@ export default function UpdatePokemon(idU){
 		try {
 			const { data: res } = await axios.put(import.meta.env.VITE_FETCH_PUT + id, body); // Buscamos en la data de la respuesta con el id que viene de props (APP.JSX) y editamos.
             openAlert("Producto actualizado")
+            setTimeout(() => {
+                window.location.href = '/home';
+              }, 1500);
 		} catch (error) {
 			if (
 				error.response &&
@@ -166,7 +170,7 @@ export default function UpdatePokemon(idU){
             </div>
 
             {error && <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center '>{error}</div>}
-            <button type="submit" className="m-4 bg-violet-100 h-10 rounded-full text-white font-semibold text-white-500 ...">
+            <button type="submit" className="m-4 bg-violet-100 h-10 rounded-full text-white font-semibold text-white-500 ..." onClick={handleSubmit}>
                 ACTUALIZAR
             </button>
         </form>

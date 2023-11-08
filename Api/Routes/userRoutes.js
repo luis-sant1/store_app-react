@@ -1,22 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const { createUser, loginUser, updateUser, getAllUsers, deleteUser, addToFav } = require('../controllers/usersController');
-const { validateRegister, validateLogin } = require('../validators/users');
+const {createUser, loginUser, updateUser, getAllUsers, deleteUser, verify, logout, addToFav  } = require('../controllers/usersController')
+const { validateRegister , validateLogin} = require('../validators/users')
 
-// Ruta para registrar un usuario
-router.post('/register', validateRegister, createUser);
+router
+.post('/register', validateRegister, createUser )
+.post('/login', validateLogin, loginUser )
 
-// Ruta para iniciar sesión
-router.post('/login', validateLogin, loginUser);
-
-// Ruta para obtener todos los usuarios
-router.get('/all', getAllUsers);
-
-// Ruta para actualizar un usuario por su ID
-router.put('/edit/:_id', updateUser);
-
-// Ruta para eliminar un usuario por su ID
-router.delete('/delete/:_id', deleteUser);
-router.get('/newFav/:_id', addToFav);
+.get('/all', getAllUsers )
+.put('/edit/:_id', updateUser)
+.delete('/delete/:_id', deleteUser)
+.get('/verify', verify)
+.post('/logout', logout)
+.get('/newFav/:_id', addToFav);
 
 module.exports = router;

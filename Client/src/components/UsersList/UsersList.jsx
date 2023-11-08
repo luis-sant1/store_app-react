@@ -1,36 +1,72 @@
 import React, { useEffect, useState } from "react";
 import DataUsers from "../DataUsers/DataUsers";
 import { useFetch } from "../customHooks/useFetch";
+import UpdateUsers from '../UpdateUsers/UpdateUsers.jsx'
+import axios from 'axios'
 
-export default function UsersLists() {
-    const { data, loading, error, total } = useFetch(import.meta.env.VITE_FETCH_USERS);
-    const [productsPerPage, setProductsPerPage] = useState(10);
-    const [currentPage, setCurrentPage] = useState(1);
+export default function UsersLists({toPage, setPage, toPageUp}) {
+  const { data } = useFetch(import.meta.env.VITE_FETCH_USERS);
+  const del = import.meta.env.VITE_FETCH_DELETE_USERS;
+  const handleEdit = ( ) => {
+    setPage("UpdateUsers")
+    toPage();
+    return;
+  } 
 
-    const lastIndex = currentPage * productsPerPage;
-    const firstIndex = lastIndex - productsPerPage;
+  return (
+<div className="w-full h-full pt-10">
+  <div className="grid w-4/5 p-5 bg-white rounded-lg mx-auto">
+    <div className="flex justify-center mb-5">
+      <h1 className="text-xl font-semibold text-black">LISTA DE USUARIOS</h1>
+    </div>
+    <div className="overflow-x-auto">
+      <table className="min-w-full table-auto border border-gray-200">
+        <thead>
+          <tr>
+            <th className="px-4 py-2">ID</th>
+            <th className="px-4 py-2">Nombre</th>
+            <th className="px-4 py-2">Apellido</th>
+            <th className="px-4 py-2">Correo</th>
+            <th className="px-4 py-2">Eliminar</th>
+            <th className="px-4 py-2">Editar</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.users &&
+            data.users.map((user) => (
+              <tr key={user._id}>
+                <td className="border px-4 py-2">{user._id}</td>
+                <td className="border px-4 py-2">{user.name}</td>
+                <td className="border px-4 py-2">{user.lastName}</td>
+                <td className="border px-4 py-2">{user.email}</td>
+                <td className="border px-4 py-2">
+                    {/* <td>{console.log(data.users)}</td> */}
+                  <button onClick={async (e) => {
+                    try {
+                      e.preventDefault()
+                      window.location.href = "home";
+                      const res = await axios.delete(del + user._id)
+                      console.log(res) ;
+                    } catch (error) {
+                      console.log(error)
+                    }
+                  }} className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded">
+                    Eliminar
+                  </button>
+                </td>
+                <td className="border px-4 py-2">
+                  <button onClick={toPageUp("UpdateUsers", user._id, data.users)} className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded">
+                    Editar
+                  </button>
+                 
+                </td>
+              </tr>
+            ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 
-    return (
-        <div className="w-full h-full pt-10">
-            <div className="grid w-4/5 h-auto p-5 bg-white rounded-lg mr-auto ml-auto">
-                <div className="flex justify-center m-2 pb-5 ...">
-                    <h1 className="text-xl font-semibold text-black ...">LISTA DE USUARIOS</h1>
-                </div>
-                <div className="grid grid-cols-5 pb-6 justify-items-center">
-                    <span>Nombre</span>
-                    <span>Apellido</span>
-                    <span>Email</span>
-                    <span>Eliminar</span>
-                    <span>Editar</span>
-                </div>
-                <div>
-                    {data.users?.map((users) => (
-                        <DataUsers key={users.name} data={users} />
-                    )).slice(firstIndex, lastIndex)}
-                    {console.log(data.users)}
-
-                </div>
-            </div>
-        </div>
-    );
+  );
 }

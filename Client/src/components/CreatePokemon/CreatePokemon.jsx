@@ -34,6 +34,7 @@ export default function CreatePokemon(){
 
 
     const handleSubmit = async (e) => {
+        e.preventDefault()
         if (data.imagen===null) {
             e.preventDefault()
             setError("Por favor ingresa la imagen del Producto")
@@ -60,6 +61,9 @@ export default function CreatePokemon(){
 			const { data: res } = await axios.post(url, body); // HACEMOS POST DE DATA
             // console.log(res)
             openAlert()
+            setTimeout(() => {
+                window.location.href = '/home';
+              }, 1500);
 		} catch (error) {
 			if (
 				error.response &&
@@ -165,7 +169,7 @@ export default function CreatePokemon(){
             </div>
 
             {error && <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center'>{error}</div>}
-            <button type="submit" className="m-4 bg-green-50 h-10 rounded-full text-white font-semibold text-white-500 ...">
+            <button type="submit" className="m-4 bg-green-50 h-10 rounded-full text-white font-semibold text-white-500 ..." onClick={handleSubmit}>
                 Crear
             </button>
         </form>
