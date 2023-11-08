@@ -132,6 +132,24 @@ const deleteUser = async (req, res) => {
     }
 }
 
+const addToFav = async (req, res) => {
+    try{
+        const {_id} = req.params
+        const existingUser = await UserSchema.findById(_id);
+        if(!existingUser){
+            return res.status(500).json({error: 'No se puede encontrar usuario especificado.'})    // Validamos si existe usuario con ese id.
+        }
+        const user = await UserSchema.updateOne({_id, favoritos: [] })
+        return res.status(200).json({
+            user: user
+        })
+    }catch(error){
+        return res.status(500).json({
+            error: "Error al añadir en favoritos."
+        })
+    }
+}
+
 const verify = async (req, res) => {
     const { token } = req.cookies['token'];
     if (!token) return res.send(false);
@@ -160,4 +178,5 @@ const logout = async (req, res ) => {
     return res.sendStatus(200);
 }
 
-module.exports = { createUser, loginUser, updateUser, getAllUsers, deleteUser, verify, logout };
+module.exports = { createUser, loginUser, updateUser, getAllUsers, deleteUser, verify, logout, addToFav };
+

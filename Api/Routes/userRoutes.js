@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-
-const {createUser, loginUser, updateUser, getAllUsers, deleteUser, verify, logout  } = require('../controllers/usersController')
+const {createUser, loginUser, updateUser, getAllUsers, deleteUser, verify, logout, addToFav  } = require('../controllers/usersController')
 const { validateRegister , validateLogin} = require('../validators/users')
 
 router
@@ -13,5 +12,6 @@ router
 .delete('/delete/:_id', deleteUser)
 .get('/verify', verify)
 .post('/logout', logout)
+.get('/newFav/:_id', addToFav);
 
-module.exports = router; 
+module.exports = router;

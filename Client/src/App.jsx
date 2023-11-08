@@ -87,7 +87,7 @@ function App() {
     }else if(page=== 'DataUsers'){
       return <DataUsers />
     }else if(page=== 'FavProducs') {
-      return <FavProducs/>
+      return <FavProducs content = {content}/>
     }
   }
   const toPage = page=>e=>{ // Función que cambia de vista. 
@@ -129,6 +129,7 @@ function App() {
             <Dropdown.Item><button onClick={toPage("UpdateUsers")} className=''>Editar Ususario</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("UsersList")} className=''>Lista de Usuarios</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("FavProducs")} className=''>Favorito</button></Dropdown.Item>
+            <Dropdown.Item><button className=''>Cerrar Sesión</button></Dropdown.Item>
           </Dropdown>
         </div>
       </header>
