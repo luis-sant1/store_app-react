@@ -10,6 +10,10 @@ Esta página funciona como una tienda de ventas de diversos productos online, mo
 * Buscar productos: Tenemos una barra de búsqueda para buscar los productos por su nombre y así encontrarlos fácilmente. 
 * Detalles de los productos: En las tarjetas de vista previa no se ven todos los detalles del producto, pero si le damos clic a cualquier parte de dicha tarjeta nos llevara a una página donde salen los detalles completos de producto; también es allí donde se encuentra el botón de actualizar y de eliminar.
 * Paginador: Tenemos un paginador en la página que nos permite dividirla en secciones, para así lograr que los productos no se acumulen en una sola página y tener más orden.
+* Regístrate: Tenemos una vista de registro donde el usuario puede crear su cuenta rellenando los campos de nombre, apellido, correo electrónico, contraseña y repetir contraseña, y así podar crear su cuenta.
+* Inicio de sesión: El usuario luego de registrarse podrá iniciar sesión siempre que quiera solo con su correo electrónico y su contraseña.
+* Lista de usuarios: En esta lista el administrador de la página podrá ver los datos de todos los usuarios, eliminarlos, o editarlos si así lo desea.
+* Editar usuario: En esta página el usuario podrá editar todos los datos de su cuanta, teniendo la opción de agregar su número de teléfono y su dirección; esta zona también funcionara como una especie de “My Profile” ya que el usuario podrá ver los datos que ya registro. 
 
 ## Tecnologías
 ***
