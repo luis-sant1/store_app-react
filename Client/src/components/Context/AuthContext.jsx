@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {                                 
     const [isAuthenticated, setIsAuthenticated] = useState(false)      // Variable para saber si está autenticado el usuario
     const signup = async (user) => {
         try {
-            const res = await axios.post(url, user)
+            // const res = await axios.post(url, user)
             console.log(res.data);
             setUser(res.data);
             setIsAuthenticated(true);
@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {                                 
             if (error.response) {
                 // La respuesta fue hecha y el servidor respondió con un código de estado
                 // que esta fuera del rango de 2xx
-                setError(error.response.data.error.toString())
+                // setError(error.response.data.error.toString())
                 console.log(errorState)
                 console.log(error.response.data);
                 console.log(error.response.status);

@@ -82,11 +82,11 @@ function App() {
     }else if(page==='Iniciar') {
       return <Iniciarsesion/>
     }else if(page=== 'UpdateUsers'){
-      return <UpdateUsers/>
+      return <UpdateUsers idU = {id} />
     }else if(page=== 'UsersList'){
-      return <UsersLists/>
+      return <UsersLists toPage = {toPage} setPage = {setPage} toPageUp = {toPageUp} />
     }else if(page=== 'DataUsers'){
-      return <DataUsers page = {page} setPage = {setPage}/>
+      return <DataUsers />
     }else if(page=== 'FavProducs') {
       return <FavProducs/>
     }

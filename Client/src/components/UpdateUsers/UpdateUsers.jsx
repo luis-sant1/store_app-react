@@ -3,26 +3,17 @@ import { useModal } from "../Modal/useModal";
 import Modal from "../Modal/Modal";
 import { useForm } from 'react-hook-form'
 import { useAuth } from "../Context/AuthContext";
+import axios from 'axios'
 
-export default function Registrate({page, setPage}) {
+export default function Registrate({page, setPage, idU, data}) {
+    console.log(idU)
     const [error, setError] = useState("");    
     const [isOpenAlert, openAlert, closeAlert] = useModal(false);
     const [repeat, setRepeat] = useState(
         ""
     )
-
-    // lo que esta comentado es que intente traerme los datos algo parecido  lo que se hace en uddate pokemon
-
-    // const id= idU.idU
-    // const [data, setData] = useState({
-	// 	name: idU.content.name.toString(),
-	// 	lastName: idU.content.lastName.toString(),
-    //     email:idU.content.email.toString(),
-	// });
-
-
-    // este codigo es basicamente una copia de como se hace el updatepkemon y el create pokemon
-    // como vi que los 2 codigos funcionaban igual los 2 con las mismas funciones y la verga pues supuse que este seria igual y lo cree igual el registrate
+        const editar = import.meta.env.VITE_FETCH_EDIT_USERS
+    
 
     const { register, handleSubmit, formState: {
         errors                                          // Extrayendo errores del formulario
@@ -39,10 +30,12 @@ export default function Registrate({page, setPage}) {
                 <h2>PERFIL ACTUALIZADO CORRECTAMENTE</h2>
             </Modal>
             <form className="flex flex-col min-w-[70%] p-2 bg-white rounded-lg ..." onSubmit={handleSubmit(async (values) => {
-                //   if(repeat != user.password){
-                //     return setError("Contraseñas no coinciden")
-                // }
-                signup(values);                                         // EJECUTA signUp desde los values de los inputs.
+               try{
+                const res = await axios.put(editar + idU, values);
+                console.log( res )
+               }catch(error){
+                console.log(error)
+               }
             })}>
                 <div className="flex justify-center m-2 ...">
                     <h1 className="text-xl font-semibold text-black ...">ACTUALIZA TU PERFIL</h1>

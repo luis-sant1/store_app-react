@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import DataUsers from "../DataUsers/DataUsers";
 import { useFetch } from "../customHooks/useFetch";
 import UpdateUsers from '../UpdateUsers/UpdateUsers.jsx'
+import axios from 'axios'
 
-export default function UsersLists() {
-  const { data, loading, error, total } = useFetch(import.meta.env.VITE_FETCH_USERS);
-  const [productsPerPage, setProductsPerPage] = useState(10);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [isEditing, setIsEditing] = useState(false);
-
-
-  const lastIndex = currentPage * productsPerPage;
-  const firstIndex = lastIndex - productsPerPage;
+export default function UsersLists({toPage, setPage, toPageUp}) {
+  const { data } = useFetch(import.meta.env.VITE_FETCH_USERS);
+  const del = import.meta.env.VITE_FETCH_DELETE_USERS;
+  const handleEdit = ( ) => {
+    setPage("UpdateUsers")
+    toPage();
+    return;
+  } 
 
   return (
 <div className="w-full h-full pt-10">
@@ -40,16 +40,25 @@ export default function UsersLists() {
                 <td className="border px-4 py-2">{user.lastName}</td>
                 <td className="border px-4 py-2">{user.email}</td>
                 <td className="border px-4 py-2">
-                    <td>{console.log(data.users)}</td>
-                  <button onClick={() => seEditing(true)} className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded">
+                    {/* <td>{console.log(data.users)}</td> */}
+                  <button onClick={async (e) => {
+                    try {
+                      e.preventDefault()
+                      window.location.href = "home";
+                      const res = await axios.delete(del + user._id)
+                      console.log(res) ;
+                    } catch (error) {
+                      console.log(error)
+                    }
+                  }} className="bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded">
                     Eliminar
                   </button>
                 </td>
                 <td className="border px-4 py-2">
-                  <button onClick={() => setIsEditing(true)} className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded">
+                  <button onClick={toPageUp("UpdateUsers", user._id, data.users)} className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded">
                     Editar
                   </button>
-                  {isEditing && <UpdateUsers />}
+                 
                 </td>
               </tr>
             ))}
