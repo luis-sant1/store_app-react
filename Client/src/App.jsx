@@ -108,7 +108,7 @@ function App() {
   const handleOpcionBusquedaChange = (e) => {
     setOpcionBusqueda(e.target.value);
   };
-  console.log(adminAuth)
+
   return (
     // Contexto
     // <AuthProvider>                              
