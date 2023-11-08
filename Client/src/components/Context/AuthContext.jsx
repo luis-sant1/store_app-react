@@ -6,6 +6,7 @@ export const AuthContext = createContext();                            // Creamo
 const register = import.meta.env.VITE_FETCH_REGISTER;
 const login = import.meta.env.VITE_FETCH_LOGIN;
 const verify = import.meta.env.VITE_FETCH_VERIFY;
+const logout = import.meta.env.VITE_FETCH_LOGOUT;
 export const useAuth = () => {                                         // AHORA con este hook traemos todods los datos sin tener que estar importando authcontext.
     const context = useContext(AuthContext);
     if (!context) {
@@ -43,6 +44,17 @@ export const AuthProvider = ({ children }) => {
             setError(error.response.data.error)
         }
     }
+      
+    const LogOut = async () =>{
+        try{
+          const res = await axios.post(logout)
+          console.log(res)
+          setIsAuthenticated(false)
+          window.location.href = "home"
+        }catch(error){
+         console.log(error)
+        }
+      }
 
     useEffect(() => {                                                   // TIMER PARA LIMPIAR LOS ERRORES
         if (error != "") {
@@ -83,7 +95,8 @@ export const AuthProvider = ({ children }) => {
             signup,                                                    // Por acá se pasa el objeto que se quiere compartir (user) 
             signin,
             user,
-            isAuthenticated,                                             // Comprobamos con un true o un false
+            isAuthenticated,    
+            LogOut,                                        // Comprobamos con un true o un false
             error
         }}>
             {children}

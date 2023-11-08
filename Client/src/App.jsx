@@ -3,26 +3,21 @@ import { useState, useEffect } from 'react'
 import Home from './components/Home/Home'
 import CreatePokemon from './components/CreatePokemon/CreatePokemon' 
 import UpdatePokemon from './components/UpdatePokemon/UpdatePokemon'
-import CardPokemons from './components/CardPokemons/CardPokemons'
 import logo from './images/pokemon.png'
 import axios from "./components/apiConfig/axios";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Search } from './components/Search/Search'
 import { useAuth } from './components/Context/AuthContext';
-import SingUp from './components/Registrate/Registrate';
 import { Dropdown } from 'flowbite-react' 
 import Registrate from './components/Registrate/Registrate';
 import Iniciarsesion from './components/Iniciarsesion/Iniciarsesion';
 import UpdateUsers from './components/UpdateUsers/UpdateUsers'
 import DataUsers from './components/DataUsers/DataUsers';
 import UsersLists from './components/UsersList/UsersList';
-
 import FavProducs from './components/FavProducs/FavProducs'
 
 
 function App() {
-  const {isAuthenticated} = useAuth()
+  const {LogOut} = useAuth()
   const[productos, setProductos] = useState([]);
   const[tablaProductos, setTablaProductos] = useState([]);
   const[busqueda, setBusqueda] = useState("");
@@ -64,7 +59,6 @@ function App() {
   const [page,setPage]=useState('home') // Estado para la página actual. 
   const [id,setID]=useState('')
   const [content, setContent] = useState("")
-  const logout = import.meta.env.VITE_FETCH_LOGOUT;
   const getContent=()=>{ // Condicional que setea el estado "page" para que se renderice. 
     if (page==='home') {
       return <Home toPageUp={toPageUp}/>
@@ -108,16 +102,7 @@ function App() {
   const handleOpcionBusquedaChange = (e) => {
     setOpcionBusqueda(e.target.value);
   };
-  const handleLogOut = async () =>{
-    try{
-      const res = await axios.post(logout)
-      console.log(res)
-    }catch(error){
-      return res.status(500).json({
-        error: "Error al iniciar sesión."
-      })
-    }
-  }
+
   return (
     // Contexto
     // <AuthProvider>                              
@@ -139,7 +124,7 @@ function App() {
             <Dropdown.Item><button onClick={toPage("UpdateUsers")} className=''>Editar Ususario</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("UsersList")} className=''>Lista de Usuarios</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("FavProducs")} className=''>Favorito</button></Dropdown.Item>
-            <Dropdown.Item><button className='' onClick={handleLogOut}>Cerrar Sesión</button></Dropdown.Item>
+            <Dropdown.Item><button className='' onClick={LogOut}>Cerrar Sesión</button></Dropdown.Item>
           </Dropdown>
         </div>
       </header>
