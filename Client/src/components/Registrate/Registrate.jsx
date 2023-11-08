@@ -52,7 +52,7 @@ export default function Registrate({ toPage, setPage, page }) {
                 />
                 {
                     errors.name && (
-                        <p className="text-red-500  text-xs">
+                        <p className="text-sm pb-3 pl-1.5 w-72">
                             Nombre requerido. Mínimo 4 caracteres.
                         </p>
                     )
@@ -67,7 +67,7 @@ export default function Registrate({ toPage, setPage, page }) {
                 />
                 {
                     errors.lastName && (
-                        <p className="text-red-500 text-xs">
+                        <p className="text-sm pb-3 pl-1.5 w-72">
                             Apellido requerido. Mínimo 4 caracteres.
                         </p>
                     )
@@ -82,7 +82,7 @@ export default function Registrate({ toPage, setPage, page }) {
                 />
                 {
                     errors.email && (
-                        <p className="text-red-500 text-xs">
+                        <p className="text-sm pb-3 pl-1.5 w-72">
                             Correo inválido.
                         </p>
                     )
@@ -97,7 +97,7 @@ export default function Registrate({ toPage, setPage, page }) {
                 />
                 {
                     errors.password && (
-                        <p className="text-red-500 text-xs">
+                        <p className="text-sm pb-3 pl-1.5 w-72">
                             Contraseña demasiado corta.
                         </p>
                     )
