@@ -32,7 +32,7 @@ export default function Iniciarsesion({toPage, setPage}) {
             <Modal isOpen={isOpenAlert} onClose={closeAlert}>
                 <h2>SESIÓN INICIADA CORRECTAMENTE</h2>
             </Modal>
-            <form className="flex flex-col min-w-[70%] p-2 bg-white rounded-lg ..." onSubmit={
+            <form className="flex flex-col p-2 bg-white rounded-lg min-w-[100%] md:min-w-[70%] ..." onSubmit={
                 onSubmit
             }>
                 <div className="flex justify-center m-2 ...">
@@ -48,7 +48,7 @@ export default function Iniciarsesion({toPage, setPage}) {
                 />
                 {
                     errors.email && (
-                        <p className="text-red-500 text-xs">
+                        <p className="text-sm pb-3 pl-1.5 w-72 ...">
                             Correo inválido.
                         </p>
                     )
@@ -63,7 +63,7 @@ export default function Iniciarsesion({toPage, setPage}) {
                 />
                 {
                     errors.password && (
-                        <p className="text-red-500 text-xs">
+                        <p className="text-sm pb-3 pl-1.5 w-72 ...">
                             Contraseña demasiado corta.
                         </p>
                     )

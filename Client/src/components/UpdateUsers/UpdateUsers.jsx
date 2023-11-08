@@ -18,14 +18,13 @@ export default function Registrate({page, setPage, idU, data}) {
     const { register, handleSubmit, formState: {
         errors                                          // Extrayendo errores del formulario
     } } = useForm();
-   
-    
+
     return (
         <div className="flex justify-center m-10 w-98 ...">
             <Modal isOpen={isOpenAlert} onClose={closeAlert}>
                 <h2>PERFIL ACTUALIZADO CORRECTAMENTE</h2>
             </Modal>
-            <form className="flex flex-col min-w-[70%] p-2 bg-white rounded-lg ..." onSubmit={handleSubmit(async (values) => {
+            <form className="flex flex-col p-2 bg-white rounded-lg min-w-[100%] md:min-w-[70%] ..." onSubmit={handleSubmit(async (values) => {
                try{
                 const res = await axios.put(editar + idU, values);
                 console.log( res )
@@ -104,7 +103,7 @@ export default function Registrate({page, setPage, idU, data}) {
 
                 {error && <div className='w-98 p-4 my-2 text-sm text-white bg-red-500 text-center rounded-lg justify-center'>{error}</div>}
                 <button type="submit" className="m-4 bg-green-50 h-10 rounded-full text-white font-semibold text-white-500 ...">
-                    Crear Perfil
+                    Editar Usuario
                 </button>
             </form>
         </div>
