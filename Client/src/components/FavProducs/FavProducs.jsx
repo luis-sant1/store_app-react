@@ -39,9 +39,6 @@ export default function FavProducs(props) {
           </div>
 
       </div>
-
-
-      
   </div>
     )
 }

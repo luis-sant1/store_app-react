@@ -22,7 +22,6 @@ export default function CardPokemons(props) {
       setFavoritos([...favoritos, props.data._id]);
     }
   };
-  console.log(favoritos)
   return (
     <div className="flex mr-auto ml-auto">
       <button

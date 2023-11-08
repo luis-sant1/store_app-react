@@ -64,6 +64,7 @@ function App() {
   const [page,setPage]=useState('home') // Estado para la página actual. 
   const [id,setID]=useState('')
   const [content, setContent] = useState("")
+  const logout = import.meta.env.VITE_FETCH_LOGOUT;
   const getContent=()=>{ // Condicional que setea el estado "page" para que se renderice. 
     if (page==='home') {
       return <Home toPageUp={toPageUp}/>
@@ -107,7 +108,16 @@ function App() {
   const handleOpcionBusquedaChange = (e) => {
     setOpcionBusqueda(e.target.value);
   };
-
+  const handleLogOut = async () =>{
+    try{
+      const res = await axios.post(logout)
+      console.log(res)
+    }catch(error){
+      return res.status(500).json({
+        error: "Error al iniciar sesión."
+      })
+    }
+  }
   return (
     // Contexto
     // <AuthProvider>                              
@@ -129,7 +139,7 @@ function App() {
             <Dropdown.Item><button onClick={toPage("UpdateUsers")} className=''>Editar Ususario</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("UsersList")} className=''>Lista de Usuarios</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("FavProducs")} className=''>Favorito</button></Dropdown.Item>
-            <Dropdown.Item><button className=''>Cerrar Sesión</button></Dropdown.Item>
+            <Dropdown.Item><button className='' onClick={handleLogOut}>Cerrar Sesión</button></Dropdown.Item>
           </Dropdown>
         </div>
       </header>
