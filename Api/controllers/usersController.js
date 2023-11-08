@@ -4,7 +4,7 @@ const { encrypt, compare } = require('../utils/handlePassword')
 const { tokenSign, verifyToken } = require('../utils/handleJwt')
 const createUser = async (req, res) => {
     try {
-        req = matchedData(req)                                  // DATA Validada con express-validator.
+        // req = matchedData(req)                                  // DATA Validada con express-validator.
         const passwordHash = await encrypt(req.body.password)        // Password encriptada
         const body = { ...req.body, password: passwordHash }         // Password reemplaza en copia de req
         const existingUser = await UserSchema.findOne({
