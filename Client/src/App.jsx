@@ -114,13 +114,7 @@ function App() {
           </Dropdown>
         </div>
       </header>
-      <div className='items-center justify-center text-center mt-4 text-white' >
-      <select onChange={handleOpcionBusquedaChange} >
-            <option value="nombre">Nombres</option>
-            <option value="categoria">Categorías</option>
-      </select>
-      </div>
-      {getContent()}
+          {getContent()}
     </div>
   
     </AuthProvider>
