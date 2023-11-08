@@ -37,8 +37,7 @@ const validateRegister = [
             validationResult(req).throw()
             return next()
         } catch (error) {
-            res.status(403)
-            res.json({
+            return res.status(403).json({
                 error: "Error entrada de datos invalida."
             })
         }
