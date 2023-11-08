@@ -15,6 +15,12 @@ import SingUp from './components/Registrate/Registrate';
 import { Dropdown } from 'flowbite-react' 
 import Registrate from './components/Registrate/Registrate';
 import Iniciarsesion from './components/Iniciarsesion/Iniciarsesion';
+import UpdateUsers from './components/UpdateUsers/UpdateUsers'
+import DataUsers from './components/DataUsers/DataUsers';
+import UsersLists from './components/UsersList/UsersList';
+
+import FavProducs from './components/FavProducs/FavProducs'
+
 
 function App() {
   const {isAuthenticated} = useAuth()
@@ -36,15 +42,16 @@ function App() {
     setBusqueda(e.target.value);
     filtrado(e.target.value)
   } 
+  const filtrado = (ParamBusqueda) =>{
+    var resultadosBusqueda = tablaProductos.filter((elemento)=>{
+      if(elemento.nombre.toString().toLowerCase().includes(ParamBusqueda.toLowerCase())
+      || elemento.precio.toString().toLowerCase().includes(ParamBusqueda.toLowerCase())
+      || elemento.categoria.toString().toLowerCase().includes(ParamBusqueda.toLowerCase())
+    ){
+      return elemento;
+    }
+    })
 
-  const filtrado = (paramBusqueda) => {
-    const resultadosBusqueda = tablaProductos.filter((elemento) => {
-      if (opcionBusqueda === 'nombre') {
-        return elemento.nombre.toString().toLowerCase().includes(paramBusqueda.toLowerCase());
-      } else if (opcionBusqueda === 'categoria') {
-        return elemento.categoria.toString().toLowerCase().includes(paramBusqueda.toLowerCase());
-      }
-    });
     setProductos(resultadosBusqueda);
   }
 
@@ -74,6 +81,14 @@ function App() {
       return <Iniciarsesion  setPage = {setPage} toPage = {toPage}/>
     }else if (isAuthenticated == false){
       return setPage("Iniciar")
+    }else if(page=== 'UpdateUsers'){
+      return <UpdateUsers idU = {id} />
+    }else if(page=== 'UsersList'){
+      return <UsersLists toPage = {toPage} setPage = {setPage} toPageUp = {toPageUp} />
+    }else if(page=== 'DataUsers'){
+      return <DataUsers />
+    }else if(page=== 'FavProducs') {
+      return <FavProducs/>
     }
   }
   const toPage = page=>e=>{ // Función que cambia de vista. 
@@ -112,6 +127,9 @@ function App() {
             <Dropdown.Item><button onClick={toPage("home")} className=''>Inicio</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("Registrate")} className=''>Registrate</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("Iniciar")} className=''>Iniciar Sesión</button></Dropdown.Item>
+            <Dropdown.Item><button onClick={toPage("UpdateUsers")} className=''>Editar Ususario</button></Dropdown.Item>
+            <Dropdown.Item><button onClick={toPage("UsersList")} className=''>Lista de Usuarios</button></Dropdown.Item>
+            <Dropdown.Item><button onClick={toPage("FavProducs")} className=''>Favorito</button></Dropdown.Item>
           </Dropdown>
         </div>
       </header>
