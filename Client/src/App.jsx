@@ -21,6 +21,7 @@ function App() {
   const[productos, setProductos] = useState([]);
   const[tablaProductos, setTablaProductos] = useState([]);
   const[busqueda, setBusqueda] = useState("");
+  const [opcionBusqueda, setOpcionBusqueda] = useState('nombre');
   const peticionesGet=async()=>{
     await axios.get("http://localhost:3000/products") //https://jsonplaceholder.typicode.com/users URL de API externa (pruebas)
     .then(response =>{
@@ -36,14 +37,14 @@ function App() {
     filtrado(e.target.value)
   } 
 
-  const filtrado = (ParamBusqueda) =>{
-    var resultadosBusqueda = tablaProductos.filter((elemento)=>{
-      if(elemento.nombre.toString().toLowerCase().includes(ParamBusqueda.toLowerCase())
-      || elemento.precio.toString().toLowerCase().includes(ParamBusqueda.toLowerCase())
-    ){
-      return elemento;
-    }
-    })
+  const filtrado = (paramBusqueda) => {
+    const resultadosBusqueda = tablaProductos.filter((elemento) => {
+      if (opcionBusqueda === 'nombre') {
+        return elemento.nombre.toString().toLowerCase().includes(paramBusqueda.toLowerCase());
+      } else if (opcionBusqueda === 'categoria') {
+        return elemento.categoria.toString().toLowerCase().includes(paramBusqueda.toLowerCase());
+      }
+    });
     setProductos(resultadosBusqueda);
   }
 
@@ -89,6 +90,10 @@ function App() {
     setContent(data) // Guarda data del fetch
   }
 
+  const handleOpcionBusquedaChange = (e) => {
+    setOpcionBusqueda(e.target.value);
+  };
+
   return (
     // Contexto
     // <AuthProvider>                              
@@ -110,8 +115,7 @@ function App() {
           </Dropdown>
         </div>
       </header>
-      
-      {getContent()}
+          {getContent()}
     </div>
   
     //{/* </AuthProvider> */}
