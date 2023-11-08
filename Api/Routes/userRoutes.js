@@ -14,3 +14,4 @@ router
 .get('/verify', verify)
 .post('/logout', logout)
 
+module.exports = router; 

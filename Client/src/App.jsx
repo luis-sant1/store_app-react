@@ -1,5 +1,4 @@
 /// IMPORT DE LOS COMPONENTES.
-'use client';
 import { useState, useEffect } from 'react'
 import Home from './components/Home/Home'
 import CreatePokemon from './components/CreatePokemon/CreatePokemon' 
@@ -29,7 +28,7 @@ function App() {
   const[busqueda, setBusqueda] = useState("");
   const [opcionBusqueda, setOpcionBusqueda] = useState('nombre');
   const peticionesGet=async()=>{
-    await axios.get("http://localhost:3000/products") //https://jsonplaceholder.typicode.com/users URL de API externa (pruebas)
+    await axios.get(import.meta.env.VITE_FETCH_ALL) //https://jsonplaceholder.typicode.com/users URL de API externa (pruebas)
     .then(response =>{
       setProductos(response.data);
       setTablaProductos(response.data);
