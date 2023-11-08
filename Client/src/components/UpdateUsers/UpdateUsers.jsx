@@ -18,18 +18,19 @@ export default function Registrate({page, setPage, idU, data}) {
     const { register, handleSubmit, formState: {
         errors                                          // Extrayendo errores del formulario
     } } = useForm();
-    const {signup, isAuthenticated } = useAuth();                                 // TRAEME signup del context.
+    // Esta constante no me deja entrar a UpdateUsers
+   /* const {signup, isAuthenticated } = useAuth();                                 // TRAEME signup del context.
     useEffect(() => {
         if(isAuthenticated) setPage("home")                                                                   // Redireccionamos al usuario si isAuthenticated = true
                                                             
     }, [isAuthenticated])    
-    
+    */
     return (
         <div className="flex justify-center m-10 w-98 ...">
             <Modal isOpen={isOpenAlert} onClose={closeAlert}>
                 <h2>PERFIL ACTUALIZADO CORRECTAMENTE</h2>
             </Modal>
-            <form className="flex flex-col min-w-[70%] p-2 bg-white rounded-lg ..." onSubmit={handleSubmit(async (values) => {
+            <form className="flex flex-col p-2 bg-white rounded-lg min-w-[100%] md:min-w-[70%] ..." onSubmit={handleSubmit(async (values) => {
                try{
                 const res = await axios.put(editar + idU, values);
                 console.log( res )
