@@ -16,6 +16,7 @@ export const useAuth = () => {                                         // AHORA 
 }
 
 export const AuthProvider = ({ children }) => {
+    const [adminAuth, setAdminAuth] = useState(false)
     const [user, setUser] = useState(null)                             // User que se está compartiendo
     const [isAuthenticated, setIsAuthenticated] = useState(false)      // Variable para saber si está autenticado el usuario
     const [error, setError] = useState("");                  // Por acá el resto de componentes consumiran los cambios que ocurran en el context.
@@ -36,6 +37,14 @@ export const AuthProvider = ({ children }) => {
     const signin = async (user) => {
         try {
             const res = await axios.post(login, user)
+            const userRole = res.data.user.user.role[0].toString()
+            console.log(userRole)
+            if(userRole === 'admin'){
+                setUser(res.data);
+                setIsAuthenticated(true);
+                return setAdminAuth(true)
+            };
+            
             console.log(res.data);
             setUser(res.data);
             setIsAuthenticated(true);
@@ -44,7 +53,6 @@ export const AuthProvider = ({ children }) => {
             setError(error.response.data.error)
         }
     }
-      
     const LogOut = async () =>{
         try{
           const res = await axios.post(logout)
@@ -97,7 +105,8 @@ export const AuthProvider = ({ children }) => {
             user,
             isAuthenticated,    
             LogOut,                                        // Comprobamos con un true o un false
-            error
+            error,
+            adminAuth
         }}>
             {children}
         </AuthContext.Provider>

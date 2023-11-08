@@ -16,7 +16,16 @@ import FavProducs from './components/FavProducs/FavProducs'
 
 
 function App() {
-  const {LogOut, isAuthenticated} = useAuth()
+  
+  const {LogOut, isAuthenticated, user, adminAuth} = useAuth()
+ 
+
+  // if(isAuthenticated){
+  //   console.log(user.user.user.role[0]);
+  //   const userRole = user.user.user.role[0];
+    
+  // }
+  
   const[productos, setProductos] = useState([]);
   const[tablaProductos, setTablaProductos] = useState([]);
   const[busqueda, setBusqueda] = useState("");
@@ -99,7 +108,6 @@ function App() {
   const handleOpcionBusquedaChange = (e) => {
     setOpcionBusqueda(e.target.value);
   };
-
   return (
     // Contexto
     // <AuthProvider>                              
@@ -114,14 +122,37 @@ function App() {
         {/* <button className='border-2 border-black w-12 h-11 text-center rounded-lg m-2 p-1 text-sm font-medium'>Menú</button> */}
         <div className=' pt-1.5  mr-2'>
           <Dropdown label="Menú" dismissOnClick={false} className=''>
-            <Dropdown.Item><button onClick={toPage("create")} className=''>Crear</button></Dropdown.Item>
-            <Dropdown.Item><button onClick={toPage("home")} className=''>Inicio</button></Dropdown.Item>
-            <Dropdown.Item><button onClick={toPage("Registrate")} className=''>Registrate</button></Dropdown.Item>
-            <Dropdown.Item><button onClick={toPage("Iniciar")} className=''>Iniciar Sesión</button></Dropdown.Item>
-            <Dropdown.Item><button onClick={toPage("UpdateUsers")} className=''>Editar Ususario</button></Dropdown.Item>
-            <Dropdown.Item><button onClick={toPage("UsersList")} className=''>Lista de Usuarios</button></Dropdown.Item>
-            <Dropdown.Item><button onClick={toPage("FavProducs")} className=''>Favorito</button></Dropdown.Item>
-            <Dropdown.Item><button className='' onClick={LogOut}>Cerrar Sesión</button></Dropdown.Item>
+            {
+              isAuthenticated &&  <Dropdown.Item><button onClick={toPage("create")} className=''>Crear</button></Dropdown.Item>
+            }
+           
+            {
+              !isAuthenticated && <Dropdown.Item><button onClick={toPage("home")} className=''>Inicio</button></Dropdown.Item>
+            } 
+            {
+              !isAuthenticated &&  <Dropdown.Item><button onClick={toPage("Iniciar")} className=''>Iniciar Sesión</button></Dropdown.Item>
+            } 
+            {
+              !isAuthenticated && <Dropdown.Item><button onClick={toPage("Registrate")} className=''>Registrate</button></Dropdown.Item>
+            } 
+            
+            {
+              adminAuth && <Dropdown.Item><button onClick={toPage("UsersList")} className=''>Lista de Usuarios</button></Dropdown.Item>
+            }
+            
+            {
+              isAuthenticated && <Dropdown.Item><button onClick={toPage("FavProducs")} className=''>Favorito</button></Dropdown.Item>
+            }
+            
+            {
+              isAuthenticated && <Dropdown.Item><button className='' onClick={
+                // setAdminAuth(false),
+                LogOut}>Cerrar Sesión</button></Dropdown.Item>
+            }
+            
+            
+            
+            
           </Dropdown>
         </div>
       </header>
