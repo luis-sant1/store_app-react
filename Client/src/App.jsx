@@ -108,7 +108,6 @@ function App() {
   const handleOpcionBusquedaChange = (e) => {
     setOpcionBusqueda(e.target.value);
   };
-
   return (
     // Contexto
     // <AuthProvider>                              
