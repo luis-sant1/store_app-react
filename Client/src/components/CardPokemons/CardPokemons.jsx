@@ -47,7 +47,7 @@ export default function CardPokemons(props) {
             {/* este el esl boton de favoritos */}
             <div className="pt-4"> 
             <button onClick={toggleFavorito} className=" w-auto h-auto">
-                {esFavorito ? < SlBan /> : < AiFillStar />}
+                {esFavorito ? "❤️" : "🤍"}
               </button>
             </div>
           </div>
