@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { createUser, loginUser, updateUser, getAllUsers, deleteUser } = require('../controllers/usersController');
+const { createUser, loginUser, updateUser, getAllUsers, deleteUser, addToFav } = require('../controllers/usersController');
 const { validateRegister, validateLogin } = require('../validators/users');
 
 // Ruta para registrar un usuario
@@ -17,5 +17,6 @@ router.put('/edit/:_id', updateUser);
 
 // Ruta para eliminar un usuario por su ID
 router.delete('/delete/:_id', deleteUser);
+router.get('/newFav/:_id', addToFav);
 
 module.exports = router;

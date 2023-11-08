@@ -29,6 +29,10 @@ const UserSchema = new Schema({
     role: {
         type: ["user", "admin"],
         default: "user"
+    },
+    favoritos: {
+        type: Array,
+        default: []
     }
 },
 {

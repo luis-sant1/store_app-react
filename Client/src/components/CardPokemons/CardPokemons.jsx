@@ -13,16 +13,16 @@ export default function CardPokemons(props) {
 
     // Crear un nuevo estado en tu componente principal (donde se renderiza CardPokemons) para almacenar las tarjetas favoritas. Inicializa este estado como un array vacío. (es es de esta primera constante)
     const [favoritos, setFavoritos] = useState([]);
-  const esFavorito = favoritos.includes(props.data.id);
+  const esFavorito = favoritos.includes(props.data._id);
 
   const toggleFavorito = () => {
     if (esFavorito) {
-      setFavoritos(favoritos.filter((id) => id !== props.data.id));
+      setFavoritos(favoritos.filter((id) => id !== props.data._id));
     } else {
-      setFavoritos([...favoritos, props.data.id]);
+      setFavoritos([...favoritos, props.data._id]);
     }
   };
-
+  console.log(favoritos)
   return (
     <div className="flex mr-auto ml-auto">
       <button

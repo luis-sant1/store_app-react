@@ -32,7 +32,7 @@ function App() {
   const[tablaProductos, setTablaProductos] = useState([]);
   const[busqueda, setBusqueda] = useState("");
   const peticionesGet=async()=>{
-    await axios.get("http://localhost:3000/products") //https://jsonplaceholder.typicode.com/users URL de API externa (pruebas)
+    await axios.get(import.meta.env.VITE_FETCH_ALL) //https://jsonplaceholder.typicode.com/users URL de API externa (pruebas)
     .then(response =>{
       setProductos(response.data);
       setTablaProductos(response.data);
@@ -87,7 +87,7 @@ function App() {
     }else if(page=== 'DataUsers'){
       return <DataUsers page = {page} setPage = {setPage}/>
     }else if(page=== 'FavProducs') {
-      return <FavProducs/>
+      return <FavProducs content = {content}/>
     }
   }
   const toPage = page=>e=>{ // Función que cambia de vista. 
