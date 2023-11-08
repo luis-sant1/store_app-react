@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AiFillStar } from "react-icons/ai" ;   
 import { SlBan } from "react-icons/sl";
-import FavProducs from '../FavProducs/FavProducs'
+// import FavProducs from '../FavProducs/FavProducs'
 
 
 
