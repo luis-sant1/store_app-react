@@ -17,7 +17,7 @@ import FavProducs from './components/FavProducs/FavProducs'
 
 
 function App() {
-  const {LogOut} = useAuth()
+  const {LogOut, isAuthenticated} = useAuth()
   const[productos, setProductos] = useState([]);
   const[tablaProductos, setTablaProductos] = useState([]);
   const[busqueda, setBusqueda] = useState("");

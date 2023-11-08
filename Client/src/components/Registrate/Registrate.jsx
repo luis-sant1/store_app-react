@@ -52,7 +52,7 @@ export default function Registrate({ toPage, setPage, page }) {
                 />
                 {
                     errors.name && (
-                        <p className="text-red-500 text-xs">
+                        <p className="text-red-500  text-xs">
                             Nombre requerido. Mínimo 4 caracteres.
                         </p>
                     )
