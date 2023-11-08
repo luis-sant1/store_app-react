@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useModal } from "../Modal/useModal";
 import Modal from "../Modal/Modal";
-import axios from "axios";
 import { useForm } from 'react-hook-form'
 import { AuthContext, useAuth } from "../Context/AuthContext";
 
 export default function Iniciarsesion({toPage, setPage}) {
     const [isOpenAlert, openAlert, closeAlert] = useModal(false);
-    const { signin, error } = useAuth()
+    const { signin, error, isAuthenticated } = useAuth()
     const { register, handleSubmit, formState: {
         errors                                                  // Errores del formState
     } } = useForm();
@@ -20,6 +19,14 @@ export default function Iniciarsesion({toPage, setPage}) {
         setPage("Registrate")
         toPage()
     }
+    useEffect(() => {
+        if (isAuthenticated) {
+            setPage("home")
+            toPage()
+        }                                                            // Redireccionamos al usuario si isAuthenticated = true
+
+    }, [isAuthenticated])
+    
     return (
         <div className="flex justify-center m-10 w-98 ...">
             <Modal isOpen={isOpenAlert} onClose={closeAlert}>

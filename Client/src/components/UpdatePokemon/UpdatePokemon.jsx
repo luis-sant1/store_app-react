@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import axios from "axios";
+import axios from "../apiConfig/axios";
 import { useModal } from "../Modal/useModal"
 import Modal from "../Modal/Modal";
 

@@ -6,20 +6,18 @@ import CreatePokemon from './components/CreatePokemon/CreatePokemon'
 import UpdatePokemon from './components/UpdatePokemon/UpdatePokemon'
 import CardPokemons from './components/CardPokemons/CardPokemons'
 import logo from './images/pokemon.png'
-import axios from 'axios'
+import axios from "./components/apiConfig/axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { Search } from './components/Search/Search'
-import { AuthProvider } from './components/Context/AuthContext';
+import { useAuth } from './components/Context/AuthContext';
 import SingUp from './components/Registrate/Registrate';
 import { Dropdown } from 'flowbite-react' 
 import Registrate from './components/Registrate/Registrate';
 import Iniciarsesion from './components/Iniciarsesion/Iniciarsesion';
 
-
-
 function App() {
-
+  const {isAuthenticated} = useAuth()
   const[productos, setProductos] = useState([]);
   const[tablaProductos, setTablaProductos] = useState([]);
   const[busqueda, setBusqueda] = useState("");
@@ -62,9 +60,10 @@ function App() {
   const getContent=()=>{ // Condicional que setea el estado "page" para que se renderice. 
     if (page==='home') {
       return <Home toPageUp={toPageUp}/>
-    }else if(page==='create'){
+    }else if(page==='create' && isAuthenticated){
       return <CreatePokemon/>
-    }else if(page==='update'){
+    }
+     else if(page==='update' && isAuthenticated ){
       return <UpdatePokemon idU={id} content={content}/>
     }else if(page === 'search'){
       return <Search  productos = {productos} toPageUp={toPageUp} />
@@ -72,6 +71,8 @@ function App() {
       return <Registrate page = {page} setPage = {setPage} toPage = {toPage} />
     }else if(page==='Iniciar') {
       return <Iniciarsesion  setPage = {setPage} toPage = {toPage}/>
+    }else if (isAuthenticated == false){
+      return setPage("Iniciar")
     }
   }
   const toPage = page=>e=>{ // Función que cambia de vista. 
@@ -90,7 +91,7 @@ function App() {
 
   return (
     // Contexto
-    <AuthProvider>                              
+    // <AuthProvider>                              
       
     <div className='w-full'>
       <header className="flex bg-white h-14 w-full">
@@ -113,7 +114,7 @@ function App() {
       {getContent()}
     </div>
   
-    </AuthProvider>
+    //{/* </AuthProvider> */}
   )
 }
 
