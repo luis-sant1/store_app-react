@@ -17,9 +17,8 @@ const authMidd = async (req, res, next) => {
             dataToken._id
         )
         req.user = user
-        res.status(200).json({
-            user: "Paso validación"
-        })                                                                         // Inyectamos la propiedad user al req que es igual al user retornado por la DB. 
+     
+                                                            // Inyectamos la propiedad user al req que es igual al user retornado por la DB. 
                                                                                        // Ya en cualquier otro controlador podemos saber qué usuario está accediendo a ese endpoint (user = req.user)
     } catch (error) {
         console.log(error)

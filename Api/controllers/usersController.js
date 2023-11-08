@@ -151,4 +151,13 @@ const verify = async (req, res) => {
 
 }
 
-module.exports = { createUser, loginUser, updateUser, getAllUsers, deleteUser, verify };
+const logout = async (req, res ) => {
+    res.cookie("token", "",{
+        httpOnly: true,
+        secure: true,
+        expires: new Date(0)
+    })
+    return res.sendStatus(200);
+}
+
+module.exports = { createUser, loginUser, updateUser, getAllUsers, deleteUser, verify, logout };

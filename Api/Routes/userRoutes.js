@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const {createUser, loginUser, updateUser, getAllUsers, deleteUser, verify  } = require('../controllers/usersController')
+const {createUser, loginUser, updateUser, getAllUsers, deleteUser, verify, logout  } = require('../controllers/usersController')
 const { validateRegister , validateLogin} = require('../validators/users')
 
 router
@@ -11,5 +11,6 @@ router
 .put('/edit/:_id', updateUser)
 .delete('/delete/:_id', deleteUser)
 .get('/verify', verify)
+.post('/logout', logout)
 
 module.exports = router
