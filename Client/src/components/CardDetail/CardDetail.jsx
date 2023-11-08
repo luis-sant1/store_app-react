@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axios from "../apiConfig/axios";
 import { useModal } from "../Modal/useModal"
 import Modal from "../Modal/Modal";
 export default function CardDetail(props){
@@ -11,6 +11,9 @@ export default function CardDetail(props){
           const {data:res}=await axios.delete(import.meta.env.VITE_FETCH_DELETE + props.dataDetail._id) // Hacemos delete obtenindo el id de las props.
           console.log(res)
           openAlert()
+          setTimeout(() => {
+            window.location.href = '/home';
+          }, 2000);
         } catch (error) {
           console.log(error)
         }
@@ -37,9 +40,9 @@ export default function CardDetail(props){
                             <span className="ml-auto mr-auto">Disponible:{props.dataDetail.unidades}</span>
                             <span className="sm:ml-5 pl-5">Categoria: {props.dataDetail.categoria[0].split('_').join(" ")}</span> {/* ARREGLADO MAL RENDERIZADO DE LAS CATEGORIAS CON ESPACIO*/}
                     </div>
-                    <div className='grid grid-cols-2 m-4 gap-20'>
+                    <div className='grid grid-cols-2 m-4 gap-20 pt-20'>
                         <button className='w-full rounded-lg shadow-lg bg-red-200 m-2 p-1 text-sm font-medium' onClick={(e)=>handleDelete()}>Eliminar</button>
-                        <button className='w-full rounded-lg shadow-lg bg-violet-100 m-2 p-1 text-sm font-medium' onClick={funUpDate("update",props.dataDetail._id, props.dataDetail )} >Actualizar</button>
+                        <button className='w-full rounded-lg shadow-lg bg-violet-100 m-2 p-1 text-sm font-medium' onClick={funUpDate("update", props.dataDetail._id, props.dataDetail )} >Actualizar</button>
                     </div>
                 </div>
             </div>:
