@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from "react";
-import DataUsers from "../DataUsers/DataUsers";
 import { useFetch } from "../customHooks/useFetch";
-import UpdateUsers from '../UpdateUsers/UpdateUsers.jsx'
 import axios from 'axios'
 
 export default function UsersLists({toPage, setPage, toPageUp}) {
   const { data } = useFetch(import.meta.env.VITE_FETCH_USERS);
   const del = import.meta.env.VITE_FETCH_DELETE_USERS;
-  const handleEdit = ( ) => {
-    setPage("UpdateUsers")
-    toPage();
-    return;
-  } 
-
   return (
 <div className="w-full h-full pt-10">
   <div className="grid w-4/5 p-5 bg-white rounded-lg mx-auto">
@@ -44,7 +36,7 @@ export default function UsersLists({toPage, setPage, toPageUp}) {
                   <button onClick={async (e) => {
                     try {
                       e.preventDefault()
-                      window.location.href = "home";
+                      // window.location.href = "UpdateUsers";
                       const res = await axios.delete(del + user._id)
                       console.log(res) ;
                     } catch (error) {

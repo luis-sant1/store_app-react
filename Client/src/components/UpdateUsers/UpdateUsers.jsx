@@ -18,11 +18,7 @@ export default function Registrate({page, setPage, idU, data}) {
     const { register, handleSubmit, formState: {
         errors                                          // Extrayendo errores del formulario
     } } = useForm();
-    const {signup, isAuthenticated } = useAuth();                                 // TRAEME signup del context.
-    useEffect(() => {
-        if(isAuthenticated) setPage("home")                                                                   // Redireccionamos al usuario si isAuthenticated = true
-                                                            
-    }, [isAuthenticated])    
+   
     
     return (
         <div className="flex justify-center m-10 w-98 ...">
@@ -94,7 +90,7 @@ export default function Registrate({page, setPage, idU, data}) {
                 <input
                     type="text"
                     placeholder="Numero de telefono"
-                    // {...register('email', { required: true, minLength: 4, maxLength: 90, pattern:  /^\S+@\S+\.\S+$/ })}
+                    {...register('email', { required: false, minLength: 4, maxLength: 90, pattern:  /^\S+@\S+\.\S+$/ })}
                     className="h-11 col-span-2 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 />
 
@@ -102,7 +98,7 @@ export default function Registrate({page, setPage, idU, data}) {
                 <input
                     type="text"
                     placeholder="Dirección"
-                    // {...register('email', { required: true, minLength: 4, maxLength: 90, pattern:  /^\S+@\S+\.\S+$/ })}
+                    {...register('email', { required: false, minLength: 4, maxLength: 90, pattern:  /^\S+@\S+\.\S+$/ })}
                     className="h-11 col-span-2 mb-4 p-1 border-gray-300 border-2 bg-slate-100 rounded-2xl ..."
                 />
 

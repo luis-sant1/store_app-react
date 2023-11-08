@@ -11,7 +11,6 @@ import { Dropdown } from 'flowbite-react'
 import Registrate from './components/Registrate/Registrate';
 import Iniciarsesion from './components/Iniciarsesion/Iniciarsesion';
 import UpdateUsers from './components/UpdateUsers/UpdateUsers'
-import DataUsers from './components/DataUsers/DataUsers';
 import UsersLists from './components/UsersList/UsersList';
 import FavProducs from './components/FavProducs/FavProducs'
 
@@ -73,16 +72,14 @@ function App() {
       return <Registrate page = {page} setPage = {setPage} toPage = {toPage} />
     }else if(page==='Iniciar') {
       return <Iniciarsesion  setPage = {setPage} toPage = {toPage}/>
-    }else if (isAuthenticated == false){
-      return setPage("Iniciar")
-    }else if(page=== 'UpdateUsers'){
-      return <UpdateUsers idU = {id} />
-    }else if(page=== 'UsersList'){
-      return <UsersLists toPage = {toPage} setPage = {setPage} toPageUp = {toPageUp} />
-    }else if(page=== 'DataUsers'){
-      return <DataUsers />
+    }else if(page=== 'UpdateUsers' && isAuthenticated){
+      return <UpdateUsers idU = {id} setPage = {setPage} />
+    }else if(page=== 'UsersList' && isAuthenticated){
+      return <UsersLists toPage = {toPage} setPage = {setPage} toPageUp = {toPageUp}  />
     }else if(page=== 'FavProducs') {
       return <FavProducs content = {content}/>
+    }else if (isAuthenticated == false){
+      return setPage("Iniciar")
     }
   }
   const toPage = page=>e=>{ // Función que cambia de vista. 
