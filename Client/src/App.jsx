@@ -108,10 +108,11 @@ function App() {
   const handleOpcionBusquedaChange = (e) => {
     setOpcionBusqueda(e.target.value);
   };
+  console.log(adminAuth)
   return (
     // Contexto
     // <AuthProvider>                              
-      
+    
     <div className='w-full'>
       <header className="flex bg-white h-14 w-full">
         <button onClick={toPage("home")}><img src={logo} alt="img_not_fund" className='ml-2 w-28 h-auto' /></button>

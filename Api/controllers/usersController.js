@@ -32,8 +32,10 @@ const createUser = async (req, res) => {
             token: token,                    // Generar un token con la data del user.
             user: userSaved                                       // User
         }
+        const rol = userSaved.role.toString()
         console.log(token)
         res.cookie("token", token)                                       // Guardar token como un a cookie
+        res.cookie("rol", rol )
         res.json({ user: data });
         // res.send("registrando")
     } catch (error) {
@@ -64,10 +66,12 @@ const loginUser = async (req, res) => {
             token: token,
             user
         }
-        user.set('password', undefined, { strict: false });                  // Vuelve a setear la password para que no pase al front.
+        user.set('password', undefined, { strict: false });   
+        const rol = user.role.toString()              // Vuelve a setear la password para que no pase al front.
         console.log(token);
         res.cookie("token", token)                                       // Guardar token como un a cookie
-
+        res.cookie("rol", rol )
+        console.log(rol)
         res.status(200).json({
             user: data
         })

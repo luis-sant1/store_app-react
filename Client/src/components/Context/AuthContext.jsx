@@ -39,12 +39,12 @@ export const AuthProvider = ({ children }) => {
             const res = await axios.post(login, user)
             const userRole = res.data.user.user.role[0].toString()
             console.log(userRole)
-            if(userRole === 'admin'){
+            if (userRole === 'admin') {
                 setUser(res.data);
                 setIsAuthenticated(true);
                 return setAdminAuth(true)
             };
-            
+
             console.log(res.data);
             setUser(res.data);
             setIsAuthenticated(true);
@@ -53,16 +53,16 @@ export const AuthProvider = ({ children }) => {
             setError(error.response.data.error)
         }
     }
-    const LogOut = async () =>{
-        try{
-          const res = await axios.post(logout)
-          console.log(res)
-          setIsAuthenticated(false)
-          window.location.href = "home"
-        }catch(error){
-         console.log(error)
+    const LogOut = async () => {
+        try {
+            const res = await axios.post(logout)
+            console.log(res)
+            setIsAuthenticated(false)
+            window.location.href = "home"
+        } catch (error) {
+            console.log(error)
         }
-      }
+    }
 
     useEffect(() => {                                                   // TIMER PARA LIMPIAR LOS ERRORES
         if (error != "") {
@@ -74,9 +74,10 @@ export const AuthProvider = ({ children }) => {
     }, [error])
 
     useEffect(() => {
-        const validate = async () => {
+        const validate = async (user) => {
             const cookies = Cookies.get()                                   // Revisamos si tenemos cookies
-            if (!cookies.token) {                                           // Si no hay token
+            if (!cookies.token) {
+                setAdminAuth(false)                                                                      // Si no hay token
                 setIsAuthenticated(false)
                 setUser(null)
                 return;
@@ -86,6 +87,7 @@ export const AuthProvider = ({ children }) => {
                 const res = await axios.get(verify, cookies.token);             // lo verificamos
                 console.log(res)
                 if (!res.data) setIsAuthenticated(false)                        // De no serverificado
+                if (cookies.rol == "admin") setAdminAuth(true)                        
 
                 setIsAuthenticated(true);                                       // SI pasa el test del backend..
                 setUser(res.data);
@@ -98,12 +100,13 @@ export const AuthProvider = ({ children }) => {
         }
         validate(); // EJECUTA
     }, [])
+
     return (                                                           // Esto se ejecuta desde AuthContext.Provider
         <AuthContext.Provider value={{
             signup,                                                    // Por acá se pasa el objeto que se quiere compartir (user) 
             signin,
             user,
-            isAuthenticated,    
+            isAuthenticated,
             LogOut,                                        // Comprobamos con un true o un false
             error,
             adminAuth

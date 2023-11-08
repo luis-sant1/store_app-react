@@ -36,8 +36,8 @@ export default function UsersLists({toPage, setPage, toPageUp}) {
                   <button onClick={async (e) => {
                     try {
                       e.preventDefault()
-                      // window.location.href = "UpdateUsers";
                       const res = await axios.delete(del + user._id)
+                      window.location.href = "UpdateUsers";
                       console.log(res) ;
                     } catch (error) {
                       console.log(error)
