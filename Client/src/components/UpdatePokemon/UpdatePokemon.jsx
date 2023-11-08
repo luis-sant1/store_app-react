@@ -117,7 +117,7 @@ export default function UpdatePokemon(idU){
                     <option value="Arte">Arte</option>
                 </select> */}
 
-                <Select id="countries" onChange={(e)=>handleSelect(e)} name="categoria" className="cursor-pointer" required>
+                <Select id="countries" onChange={(e)=>handleSelect(e)} name="categoria" className="cursor-pointer" value={data.categoria} multiple={false} required>
                     <option value="Ropa">Ropa</option>
                     <option value="Tecnologia">Tecnologia</option>
                     <option value="Accesorios">Accesorios</option>

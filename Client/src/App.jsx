@@ -125,6 +125,7 @@ function App() {
             <Dropdown.Item><button onClick={toPage("UpdateUsers")} className=''>Editar Ususario</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("UsersList")} className=''>Lista de Usuarios</button></Dropdown.Item>
             <Dropdown.Item><button onClick={toPage("FavProducs")} className=''>Favorito</button></Dropdown.Item>
+            <Dropdown.Item><button className=''>Cerrar Sesión</button></Dropdown.Item>
           </Dropdown>
         </div>
       </header>
